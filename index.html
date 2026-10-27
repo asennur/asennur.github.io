@@ -25,15 +25,15 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 /* ── NOISE + BG ── */
 body::after{
   content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
-  opacity:0.025;
+  opacity:0.015;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat:repeat;background-size:200px 200px;
 }
 .bg-glow{
   position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(230,57,70,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(180,30,40,0.10) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(230,57,70,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(180,30,40,0.05) 0%, transparent 60%);
 }
 
 /* ── NAV ── */
@@ -41,7 +41,7 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;justify-content:space-between;align-items:center;
   padding:1rem 3rem;
-  background:rgba(7,7,15,0.7);
+  background:rgba(13,6,8,0.8);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(230,57,70,0.1);
 }
@@ -113,8 +113,7 @@ nav{
 }
 .hero-h1 .grad{
   display:block;
-  background:linear-gradient(120deg,var(--a) 0%,var(--a2) 50%,var(--a3) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:var(--a);
 }
 .hero-divider{
   width:48px;height:1px;
@@ -136,10 +135,9 @@ nav{
 .stat{display:flex;flex-direction:column;gap:0.25rem}
 .stat-n{
   font-family:var(--serif);font-size:2.2rem;font-weight:800;line-height:1;
-  background:linear-gradient(135deg,var(--text),var(--a2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:var(--text);
 }
-.stat-l{font-size:0.57rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.stat-l{font-size:0.57rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted2);font-weight:500}
 
 .hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
 
@@ -147,15 +145,14 @@ nav{
 .btn-fill{
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.85rem 1.8rem;
-  background:linear-gradient(135deg,var(--a),#c0151f);
+  background:var(--a);
   color:#fff;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
   text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);
   transition:all 0.25s;
-  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
-  box-shadow:0 4px 24px rgba(230,57,70,0.3);
+  border-radius:2px;
 
 }
-.btn-fill:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(230,57,70,0.45);background:linear-gradient(135deg,var(--a2),var(--a))}
+.btn-fill:hover{background:#cf2e3b;transform:translateY(-1px)}
 .btn-outline{
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.85rem 1.8rem;
@@ -163,7 +160,7 @@ nav{
   font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
   text-decoration:none;cursor:pointer;font-family:var(--sans);
   transition:all 0.25s;
-  border:1px solid rgba(230,57,70,0.25);
+  border:1px solid rgba(255,255,255,0.15);border-radius:2px;
 }
 .btn-outline:hover{border-color:var(--a);color:var(--a2);background:rgba(230,57,70,0.06)}
 
@@ -215,13 +212,13 @@ nav{
 
 /* project cards with gradient border */
 .card-outer{
-  margin-bottom:3px;
-  background:linear-gradient(135deg,rgba(230,57,70,0.25),rgba(230,57,70,0.05) 50%,transparent);
+  margin-bottom:1.5rem;
+  background:rgba(255,255,255,0.06);
   padding:1px;
   transition:background 0.4s;
 }
 .card-outer:hover{
-  background:linear-gradient(135deg,rgba(230,57,70,0.55),rgba(230,57,70,0.15) 50%,rgba(230,57,70,0.05));
+  background:rgba(230,57,70,0.35);
 }
 .card-inner{
   display:grid;grid-template-columns:55% 45%;
@@ -310,6 +307,18 @@ nav{
 .ctable td:last-child{font-weight:500;color:var(--text)}
 .nda{font-size:0.65rem;color:var(--muted);font-style:italic;margin-top:0.5rem;padding-top:0.7rem;border-top:1px solid rgba(255,255,255,0.04)}
 
+/* featured (current project) */
+.card-outer.featured{background:linear-gradient(135deg,var(--a),rgba(230,57,70,0.2) 60%,rgba(255,255,255,0.06))}
+.card-outer.featured .cmain{min-height:480px}
+.feat-label{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
+  color:#fff;background:var(--a);padding:0.3rem 0.7rem;margin-bottom:1.1rem;border-radius:2px;
+}
+.feat-label::before{content:'';width:5px;height:5px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:0.3}}
+.chip-dev{border-color:rgba(255,200,90,0.35);color:#ffd27a;background:rgba(255,200,90,0.05)}
+
 /* ── ABOUT ── */
 .about-wrap{
   display:grid;grid-template-columns:1fr 1fr;
@@ -342,8 +351,7 @@ nav{
   letter-spacing:-0.03em;margin-bottom:2.5rem;
 }
 .a-heading .hl{
-  background:linear-gradient(120deg,var(--a),var(--a2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:var(--a);
 }
 .a-p{font-size:0.88rem;line-height:1.95;color:var(--muted2);font-weight:300}
 .a-p+.a-p{margin-top:1.3rem}
@@ -491,7 +499,7 @@ footer{
       <span class="grad" data-key="hero-line2">playing.</span>
     </h1>
     <div class="hero-divider up"></div>
-    <p class="hero-desc up" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Solo developer of DishDash — shipped on Steam with 600+ wishlists before launch.</p>
+    <p class="hero-desc up" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Currently developing Build&amp;Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.</p>
     <div class="hero-stats up">
       <div class="stat"><span class="stat-n">4+</span><span class="stat-l" data-key="s0">Years</span></div>
       <div class="stat"><span class="stat-n">600+</span><span class="stat-l" data-key="s1">Wishlists</span></div>
@@ -559,13 +567,40 @@ footer{
       <p class="work-eyebrow" data-key="we">Selected Work</p>
       <h2 class="work-title" data-key="wt">Projects</h2>
     </div>
-    <span class="work-count" data-key="wc">5 Projects</span>
+    <span class="work-count" data-key="wc">6 Projects</span>
+  </div>
+
+  <!-- BUILD&BOOM -->
+  <div class="card-outer featured up">
+    <div class="card-inner" style="position:relative">
+      <span class="cnum">01</span>
+      <div class="cmedia">
+        <div class="cmain"><img id="bb" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5413500/4c6ed436ff70491bfbae4e18d41bfe9bc6f66ba6/header.jpg" alt="Build&amp;Boom" onclick="openLb(this.src)"></div>
+      </div>
+      <div class="cbody">
+        <div>
+          <span class="feat-label" data-key="bb-f">Now in Development</span>
+          <p class="cgenre" data-key="bb-g">Party · Competitive · Multiplayer</p>
+          <h2 class="cname">Build&amp;Boom</h2>
+          <div class="cchips"><span class="chip chip-a">Steam</span><span class="chip chip-dev" data-key="bb-c">Coming 2027</span><span class="chip">PC</span><span class="chip">Online &amp; Split-screen</span></div>
+          <p class="cdesc" data-key="bb-d">Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.</p>
+          <table class="ctable">
+            <tr><td data-key="tr">Role</td><td data-key="bb-r">Game Developer</td></tr>
+            <tr><td data-key="tp">Platform</td><td>PC (Steam)</td></tr>
+            <tr><td data-key="tm">Players</td><td>1v1 – 3v3</td></tr>
+          </table>
+        </div>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
+          <a href="https://store.steampowered.com/app/5413500/" target="_blank" class="btn-fill" data-key="bb-b">Wishlist on Steam <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- DISHDASH -->
   <div class="card-outer up">
-    <div class="card-inner" style="position:relative">
-      <span class="cnum">01</span>
+    <div class="card-inner flip" style="position:relative">
+      <span class="cnum">02</span>
       <div class="cmedia">
         <div class="cmain"><img id="dd" src="Dishdash_1.png" alt="DishDash" onclick="openLb(this.src)"></div>
         <div class="cstrip">
@@ -595,8 +630,8 @@ footer{
 
   <!-- RESTAURANT RUMBLE -->
   <div class="card-outer up">
-    <div class="card-inner flip" style="position:relative">
-      <span class="cnum">02</span>
+    <div class="card-inner" style="position:relative">
+      <span class="cnum">03</span>
       <div class="cmedia">
         <div class="cmain"><img id="rr" src="Rumble.png" alt="Restaurant Rumble" onclick="openLb(this.src)"></div>
         <div class="cstrip">
@@ -622,8 +657,8 @@ footer{
 
   <!-- OYUN EVİ -->
   <div class="card-outer up">
-    <div class="card-inner" style="position:relative">
-      <span class="cnum">03</span>
+    <div class="card-inner flip" style="position:relative">
+      <span class="cnum">04</span>
       <div class="cmedia">
         <div class="cmain"><img id="oe" src="OyunEvi.png" alt="Oyun Evi" onclick="openLb(this.src)"></div>
         <div class="cstrip">
@@ -649,8 +684,8 @@ footer{
 
   <!-- ANA DİLİ 2 -->
   <div class="card-outer up">
-    <div class="card-inner flip" style="position:relative">
-      <span class="cnum">04</span>
+    <div class="card-inner" style="position:relative">
+      <span class="cnum">05</span>
       <div class="cmedia">
         <div class="cmain"><img id="ad" src="AnaDili.png" alt="Ana Dili 2" onclick="openLb(this.src)"></div>
         <div class="cstrip">
@@ -676,8 +711,8 @@ footer{
 
   <!-- PICKER 3D -->
   <div class="card-outer up">
-    <div class="card-inner" style="position:relative">
-      <span class="cnum">05</span>
+    <div class="card-inner flip" style="position:relative">
+      <span class="cnum">06</span>
       <div class="cmedia">
         <div class="cmain"><img id="pk" src="Picker.png" alt="Picker 3D" onclick="openLb(this.src)"></div>
         <div class="cstrip">
@@ -744,6 +779,7 @@ footer{
     <div class="crow"><p class="crow-l" data-key="cl0">Email</p><a href="mailto:ahsennurilter@gmail.com" class="crow-v">ahsennurilter@gmail.com</a></div>
     <div class="crow"><p class="crow-l" data-key="cl1">Alt Email</p><a href="mailto:ahsennurilter@hotmail.com" class="crow-v">ahsennurilter@hotmail.com</a></div>
     <div class="crow"><p class="crow-l" data-key="cl2">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="crow-v">Ahsen Nur İlter</a></div>
+    <div class="crow"><p class="crow-l">Build&amp;Boom</p><a href="https://store.steampowered.com/app/5413500/" target="_blank" class="crow-v">Steam · Wishlist</a></div>
     <div class="crow"><p class="crow-l" data-key="cl3">Steam</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="crow-v">DishDash · Steam Page</a></div>
   </div>
 </section>
@@ -779,11 +815,13 @@ const T={
   en:{
     'n0':'Work','n1':'About','n2':'Contact',
     'hero-tag':'Game Developer','hero-line1':'Games worth','hero-line2':'playing.',
-    'hero-desc':'4+ years building games across mobile, VR, and PC. Solo developer of DishDash — shipped on Steam with 600+ wishlists before launch.',
+    'hero-desc':'4+ years building games across mobile, VR, and PC. Currently developing Build&Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.',
     'hb1':'View My Work','hb2':'Get in Touch',
     's0':'Years','s1':'Wishlists','s2':'Shipped','s3':'Meta Quest',
-    'we':'Selected Work','wt':'Projects','wc':'5 Projects','vl':'Video',
+    'we':'Selected Work','wt':'Projects','wc':'6 Projects','vl':'Video',
     'tr':'Role','tp':'Platform','te':'Engine','tt':'Type',
+    'bb-f':'Now in Development','bb-g':'Party · Competitive · Multiplayer','bb-c':'Coming 2027','bb-r':'Game Developer','bb-b':'Wishlist on Steam','tm':'Players',
+    'bb-d':'Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.',
     'dd-g':'Time Management · Simulation','dd-d':'Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.','dd-r':'Solo Dev — Design, Code, Art, Audio','dd-b':'View on Steam','dd-pk':'Detailed Overview',
     'rr-g':'VR · Physics · Prototype','rr-d':'VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch.','rr-r':'Developer',
     'oe-g':'Children · Mobile · Freelance','oe-d':"Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently. Visuals provided by client.",'oe-r':'Solo Developer','oe-t':'Freelance','oe-n':'Visuals pending client approval — NDA applies',
@@ -802,11 +840,13 @@ const T={
   tr:{
     'n0':'Projeler','n1':'Hakkımda','n2':'İletişim',
     'hero-tag':'Oyun Geliştirici','hero-line1':'Oynanmaya','hero-line2':'değer.',
-    'hero-desc':'4+ yıldır mobil, VR ve PC\'de oyun geliştiriyorum. DishDash\'in solo geliştiricisi — Steam\'de 600+ istek listesiyle yayınlandı.',
+    'hero-desc':'4+ yıldır mobil, VR ve PC\'de oyun geliştiriyorum. Şu anda Steam\'e gelecek rekabetçi parti oyunu Build&Boom\'u geliştiriyorum. Daha önce DishDash\'i tek başıma Steam\'de yayınladım.',
     'hb1':'Projeleri Gör','hb2':'İletişime Geç',
     's0':'Yıl','s1':'İstek Listesi','s2':'Yayınlanan','s3':'Meta Quest',
-    'we':'Seçili Projeler','wt':'Projeler','wc':'5 Proje','vl':'Video',
+    'we':'Seçili Projeler','wt':'Projeler','wc':'6 Proje','vl':'Video',
     'tr':'Rol','tp':'Platform','te':'Motor','tt':'Tür',
+    'bb-f':'Şu An Geliştiriliyor','bb-g':'Parti · Rekabetçi · Çok Oyunculu','bb-c':'2027\'de Geliyor','bb-r':'Oyun Geliştirici','bb-b':'Steam\'de İstek Listesine Ekle','tm':'Oyuncu',
+    'bb-d':'Kaotik, rekabetçi bir parti oyunu: bir takım plana göre yapıyı yükseltmeye çalışırken diğeri taşlar, rüzgâr fanları, dronlar, domatesler ve tuzaklarla onu yıkmak için her şeyi yapar. 1v1\'den 3v3\'e üç mod, online ya da yerel bölünmüş ekran.',
     'dd-g':'Zaman Yönetimi · Simülasyon','dd-d':'Gameplay, UI/UX, sanat, ses ve Steam yayınını tek başıma yönettiğim solo restoran simülasyonu.','dd-r':'Solo Geliştirici — Tasarım, Kod, Sanat, Ses','dd-b':'Steam\'de Gör','dd-pk':'Ayrıntılı İncele',
     'rr-g':'VR · Fizik · Prototip','rr-d':'Bulaşık yıkama ve yemek pişirme üzerine VR mekanik prototipi. Fizik tabanlı el etkileşimleri sıfırdan geliştirildi.','rr-r':'Geliştirici',
     'oe-g':'Çocuk · Mobil · Freelance','oe-d':'Boyama ve puzzle mekanikli çocuk mobil oyunu. Tüm geliştirme sürecini bağımsız yürüttüm.','oe-r':'Solo Geliştirici','oe-t':'Freelance','oe-n':'Görseller müşteri onayı bekleniyor (NDA)',
