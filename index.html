@@ -4,789 +4,475 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahsen Nur İlter — Game Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Ahsen Nur İlter — Game developer. Currently building Build&Boom. Shipped DishDash on Steam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0608;
-  --bg2:#150a0c;
-  --text:#fff0f0;
-  --muted:#5c3a3d;
-  --muted2:#b89496;
+  --bg:#0a0a0b;
+  --bg2:#111113;
+  --card:#141416;
+  --line:rgba(255,255,255,0.08);
+  --line2:rgba(255,255,255,0.14);
+  --text:#f4f2f1;
+  --muted:#8a8688;
+  --dim:#5a5759;
   --a:#e63946;
-  --a2:#ff6b6b;
-  --a3:#ffa3a3;
-  --serif:'Syne',sans-serif;
+  --a-soft:rgba(230,57,70,0.12);
+  --head:'Space Grotesk',sans-serif;
   --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r:14px;
+  --max:1240px;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
-
-/* ── NOISE + BG ── */
-body::after{
-  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
-  opacity:0.015;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;
-}
-.bg-glow{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(230,57,70,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(180,30,40,0.05) 0%, transparent 60%);
-}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 2rem}
+.mono{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.04em;color:var(--muted)}
 
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1rem 3rem;
-  background:rgba(13,6,8,0.8);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(230,57,70,0.1);
+  background:rgba(10,10,11,0.75);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
 }
-.nav-logo{font-family:var(--serif);font-size:0.9rem;font-weight:800;text-decoration:none;color:var(--text)}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted2);text-decoration:none;font-weight:500;transition:color 0.2s}
+.nav-in{max-width:var(--max);margin:0 auto;padding:0.95rem 2rem;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-family:var(--head);font-weight:700;font-size:1rem;text-decoration:none;display:flex;align-items:center;gap:0.6rem}
+.nav-logo .mark{width:28px;height:28px;border-radius:8px;background:var(--a);display:grid;place-items:center;font-size:0.75rem;color:#fff}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:0.85rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
 .nav-links a:hover{color:var(--text)}
-.lang-toggle{display:flex;border:1px solid rgba(230,57,70,0.25);border-radius:3px;overflow:hidden}
-.lang-btn{padding:0.26rem 0.7rem;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;background:transparent;color:var(--muted2);border:none;cursor:pointer;transition:all 0.2s;font-family:var(--sans)}
-.lang-btn.active{background:var(--a);color:#fff}
-
-/* ── HERO ── */
-.hero{
-  position:relative;z-index:1;
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:48% 52%;
-}
-
-/* photo side */
-.hero-img{
-  position:relative;overflow:hidden;
-}
-.hero-img img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center top;
-  display:block;
-}
-.hero-img::after{
-  content:'';position:absolute;inset:0;
-  background:
-    linear-gradient(to right, transparent 50%, var(--bg) 100%),
-    linear-gradient(to top, var(--bg) 0%, transparent 25%),
-    linear-gradient(135deg, rgba(230,57,70,0.2) 0%, transparent 60%);
-}
-.hero-img-bar{
-  position:absolute;top:0;left:0;bottom:0;width:2px;
-  background:linear-gradient(180deg,transparent 0%,var(--a) 30%,var(--a2) 70%,transparent 100%);
-  z-index:2;
-}
-
-/* content side */
-.hero-content{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:9rem 4rem 6rem 3.5rem;
-  position:relative;
-  border-left:1px solid rgba(230,57,70,0.08);
-}
-.hero-tag-row{
-  display:flex;align-items:center;gap:0.65rem;
-  margin-bottom:2rem;
-}
-.hero-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--a);
-  box-shadow:0 0 12px var(--a),0 0 24px rgba(230,57,70,0.4);
-  animation:glow 2s ease-in-out infinite alternate;
-}
-@keyframes glow{from{box-shadow:0 0 6px var(--a)}to{box-shadow:0 0 18px var(--a),0 0 36px rgba(230,57,70,0.5)}}
-.hero-tag-text{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--a2);font-weight:500}
-
-.hero-h1{
-  font-family:var(--serif);
-  font-size:clamp(2.8rem,4.5vw,5.2rem);
-  font-weight:800;
-  line-height:1.0;
-  letter-spacing:-0.035em;
-  margin-bottom:2rem;
-}
-.hero-h1 .grad{
-  display:block;
-  color:var(--a);
-}
-.hero-divider{
-  width:48px;height:1px;
-  background:linear-gradient(90deg,var(--a),transparent);
-  margin-bottom:1.8rem;
-}
-.hero-desc{
-  font-size:0.93rem;line-height:1.8;
-  color:var(--muted2);max-width:420px;
-  font-weight:300;margin-bottom:3rem;
-}
-
-.hero-stats{
-  display:flex;gap:2rem;flex-wrap:wrap;
-  margin-bottom:3rem;
-  padding-bottom:2.5rem;
-  border-bottom:1px solid rgba(230,57,70,0.1);
-}
-.stat{display:flex;flex-direction:column;gap:0.25rem}
-.stat-n{
-  font-family:var(--serif);font-size:2.2rem;font-weight:800;line-height:1;
-  color:var(--text);
-}
-.stat-l{font-size:0.57rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted2);font-weight:500}
-
-.hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
+.lang-toggle{display:flex;border:1px solid var(--line2);border-radius:999px;padding:2px}
+.lang-btn{padding:0.28rem 0.7rem;font-size:0.7rem;font-weight:600;background:transparent;color:var(--muted);border:none;border-radius:999px;cursor:pointer;font-family:var(--sans);transition:all 0.2s}
+.lang-btn.active{background:var(--text);color:var(--bg)}
 
 /* ── BUTTONS ── */
-.btn-fill{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  padding:0.85rem 1.8rem;
-  background:var(--a);
-  color:#fff;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
-  text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);
-  transition:all 0.25s;
-  border-radius:2px;
+.btn{
+  display:inline-flex;align-items:center;gap:0.55rem;
+  padding:0.85rem 1.4rem;border-radius:999px;
+  font-size:0.85rem;font-weight:500;text-decoration:none;font-family:var(--sans);
+  transition:all 0.2s;cursor:pointer;border:1px solid transparent;
+}
+.btn svg{width:13px;height:13px;transition:transform 0.2s}
+.btn:hover svg{transform:translate(2px,-2px)}
+.btn-fill{background:var(--a);color:#fff}
+.btn-fill:hover{background:#ff4b58}
+.btn-outline{border-color:var(--line2);color:var(--text)}
+.btn-outline:hover{border-color:var(--text)}
+.btn-light{background:var(--text);color:var(--bg)}
+.btn-light:hover{background:#fff}
 
+/* ── HERO ── */
+.hero{padding:9rem 0 5rem;position:relative}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;opacity:0.35;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);
 }
-.btn-fill:hover{background:#cf2e3b;transform:translateY(-1px)}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  padding:0.85rem 1.8rem;
-  background:transparent;color:var(--text);
-  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
-  text-decoration:none;cursor:pointer;font-family:var(--sans);
-  transition:all 0.25s;
-  border:1px solid rgba(255,255,255,0.15);border-radius:2px;
+.hero-grid{display:grid;grid-template-columns:1.35fr 0.65fr;gap:4rem;align-items:center;position:relative}
+.status{
+  display:inline-flex;align-items:center;gap:0.55rem;
+  padding:0.4rem 0.85rem 0.4rem 0.7rem;border:1px solid var(--line2);border-radius:999px;
+  font-size:0.78rem;color:var(--muted);margin-bottom:2rem;text-decoration:none;transition:border-color 0.2s;
 }
-.btn-outline:hover{border-color:var(--a);color:var(--a2);background:rgba(230,57,70,0.06)}
+.status:hover{border-color:var(--a)}
+.status b{color:var(--text);font-weight:500}
+.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,0.18)}
+.hero-h1{
+  font-family:var(--head);font-weight:700;
+  font-size:clamp(3rem,7vw,6.2rem);line-height:0.95;letter-spacing:-0.045em;
+  margin-bottom:1.6rem;
+}
+.hero-h1 .acc{color:var(--a)}
+.hero-role{font-family:var(--head);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:500;color:var(--text);margin-bottom:1rem}
+.hero-desc{font-size:1rem;line-height:1.75;color:var(--muted);max-width:540px;margin-bottom:2.4rem}
+.hero-btns{display:flex;gap:0.7rem;flex-wrap:wrap}
+.hero-photo{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;border:1px solid var(--line2)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(0.15) contrast(1.05)}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,11,0.55),transparent 45%)}
+.hero-photo .tag{position:absolute;left:1rem;bottom:1rem;z-index:1;color:#fff;opacity:0.9}
 
-/* ── MARQUEE ── */
-.marquee-wrap{
-  position:relative;z-index:1;
-  overflow:hidden;
-  border-top:1px solid rgba(230,57,70,0.1);
-  border-bottom:1px solid rgba(230,57,70,0.1);
-  padding:1rem 0;
-  background:rgba(230,57,70,0.03);
-}
-.marquee-track{
-  display:flex;gap:0;
-  animation:slide 22s linear infinite;
-  width:max-content;
-}
-.marquee-track:hover{animation-play-state:paused}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{
-  font-family:var(--serif);
-  font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--muted);font-weight:700;
-  padding:0 2rem;white-space:nowrap;
-}
-.marquee-item.accent{color:var(--a2)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative}
+.stat{padding:1.6rem 0 1.6rem 1.5rem;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat-n{font-family:var(--head);font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;display:block;margin-bottom:0.2rem}
+.stat-l{font-size:0.8rem;color:var(--muted)}
 
-/* ── SECTION BASE ── */
-.section{position:relative;z-index:1}
+/* ── SECTION HEAD ── */
+.sec{padding:6rem 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem}
+.sec-kicker{display:block;color:var(--a);margin-bottom:0.7rem}
+.sec-title{font-family:var(--head);font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.035em;line-height:1}
 
-/* ── WORK ── */
-.work-wrap{
-  padding:7rem 3rem;
-  background:var(--bg2);
-  border-top:1px solid rgba(230,57,70,0.08);
+/* ── FEATURED ── */
+.feat{
+  display:grid;grid-template-columns:1.25fr 1fr;
+  border-radius:20px;overflow:hidden;
+  background:var(--card);border:1px solid var(--line2);
+  position:relative;
 }
-.work-header{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:4.5rem;
-}
-.work-eyebrow{
-  font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--a2);font-weight:500;
-  display:flex;align-items:center;gap:0.75rem;margin-bottom:0.8rem;
-}
-.work-eyebrow::before{content:'';width:14px;height:1px;background:var(--a)}
-.work-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;letter-spacing:-0.03em}
-.work-count{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding-bottom:0.4rem}
+.feat::before{content:'';position:absolute;inset:0;border-radius:20px;pointer-events:none;
+  background:radial-gradient(ellipse 60% 80% at 100% 0%,rgba(230,57,70,0.14),transparent 60%)}
+.feat-media{position:relative;flex:1;min-height:400px;background:#000;overflow:hidden}
+.feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform 0.8s cubic-bezier(.2,.7,.2,1)}
+.feat:hover .feat-media img{transform:scale(1.03)}
+.feat-body{padding:2.8rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem;position:relative}
+.pill{display:inline-flex;align-items:center;gap:0.45rem;padding:0.3rem 0.7rem;border-radius:999px;font-size:0.72rem;font-weight:500;background:var(--a-soft);color:#ff7a84;border:1px solid rgba(230,57,70,0.3)}
+.pill .dot{background:var(--a);box-shadow:0 0 0 3px rgba(230,57,70,0.2);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:0.35}}
+.feat-name{font-family:var(--head);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:700;letter-spacing:-0.045em;line-height:1;margin:1.2rem 0 0.6rem}
+.feat-genre{margin-bottom:1.3rem}
+.feat-desc{font-size:0.95rem;line-height:1.75;color:var(--muted)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.meta dt{font-size:0.72rem;color:var(--dim);margin-bottom:0.3rem}
+.meta dd{font-size:0.88rem;font-weight:500}
 
-/* project cards with gradient border */
-.card-outer{
-  margin-bottom:1.5rem;
-  background:rgba(255,255,255,0.06);
-  padding:1px;
-  transition:background 0.4s;
+/* ── PROJECT GRID ── */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.25rem}
+.pcard{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  display:flex;flex-direction:column;transition:border-color 0.25s,transform 0.25s;
 }
-.card-outer:hover{
-  background:rgba(230,57,70,0.35);
-}
-.card-inner{
-  display:grid;grid-template-columns:55% 45%;
-  background:var(--bg);
-  position:relative;overflow:hidden;
-}
-.card-inner::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 50% 80% at 0% 50%,rgba(230,57,70,0.04) 0%,transparent 70%);
-  pointer-events:none;transition:opacity 0.4s;
-}
-.card-outer:hover .card-inner::before{opacity:2}
-.card-inner.flip .cmedia{order:2;border-right:none;border-left:1px solid rgba(230,57,70,0.08)}
-.card-inner.flip .cbody{order:1}
-
-.cmedia{
-  display:flex;flex-direction:column;
-  border-right:1px solid rgba(230,57,70,0.08);
-}
-.cmain{
-  flex:1;min-height:420px;
-  background:var(--bg2);position:relative;overflow:hidden;
-}
-.cmain img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  cursor:zoom-in;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
-}
-.cmain:hover img{transform:scale(1.04)}
-.cmain iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
-
-.cstrip{
-  display:flex;gap:1px;
-  background:rgba(230,57,70,0.08);
-  border-top:1px solid rgba(230,57,70,0.08);
-  overflow-x:auto;flex-shrink:0;
-}
-.cstrip::-webkit-scrollbar{height:2px}
-.cstrip::-webkit-scrollbar-thumb{background:var(--a)}
-.tn{flex:0 0 66px;height:42px;object-fit:cover;background:var(--bg2);cursor:pointer;opacity:0.3;transition:opacity 0.2s;display:block}
-.tn:hover{opacity:0.65}
-.tn.on{opacity:1;outline:2px solid var(--a);outline-offset:-2px}
-.tnv{
-  flex:0 0 66px;height:42px;background:var(--bg2);border:none;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  opacity:0.35;transition:opacity 0.2s;
-}
-.tnv:hover{opacity:0.75}
-.tnv.on{opacity:1;outline:2px solid var(--a);outline-offset:-2px}
-.tnv svg{width:15px;height:15px}
-.tnv span{font-size:0.4rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2)}
-
-.cbody{
-  padding:3rem;
-  display:flex;flex-direction:column;justify-content:space-between;
-}
-.cnum{
-  font-family:var(--serif);font-size:4rem;font-weight:800;
-  color:rgba(230,57,70,0.08);line-height:1;
-  position:absolute;top:1.5rem;right:2rem;
-  letter-spacing:-0.05em;pointer-events:none;
-  transition:color 0.4s;
-}
-.card-inner.flip .cnum{right:auto;left:2rem}
-.card-outer:hover .cnum{color:rgba(230,57,70,0.15)}
-.cgenre{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--a2);font-weight:500;margin-bottom:0.65rem}
-.cname{
-  font-family:var(--serif);
-  font-size:clamp(1.8rem,2.5vw,2.5rem);
-  font-weight:800;letter-spacing:-0.03em;line-height:1.05;
-  margin-bottom:1rem;
-}
-.cchips{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1.2rem}
-.chip{
-  font-size:0.53rem;letter-spacing:0.1em;text-transform:uppercase;
-  padding:0.2rem 0.55rem;
-  border:1px solid rgba(255,255,255,0.08);color:var(--muted2);font-weight:500;
-}
-.chip-a{border-color:rgba(230,57,70,0.35);color:var(--a2);background:rgba(230,57,70,0.05)}
-.chip-pro{border-color:rgba(100,220,130,0.3);color:#7ee8a2;background:rgba(100,220,130,0.04)}
-.cdesc{font-size:0.83rem;line-height:1.82;color:var(--muted2);font-weight:300;margin-bottom:1.5rem}
-.ctable{width:100%;border-collapse:collapse;border-top:1px solid rgba(230,57,70,0.08);margin-bottom:1.5rem}
-.ctable tr{border-bottom:1px solid rgba(230,57,70,0.06)}
-.ctable tr:last-child{border-bottom:none}
-.ctable td{font-size:0.74rem;padding:0.55rem 0}
-.ctable td:first-child{color:var(--muted);width:32%}
-.ctable td:last-child{font-weight:500;color:var(--text)}
-.nda{font-size:0.65rem;color:var(--muted);font-style:italic;margin-top:0.5rem;padding-top:0.7rem;border-top:1px solid rgba(255,255,255,0.04)}
-
-/* featured (current project) */
-.card-outer.featured{background:linear-gradient(135deg,var(--a),rgba(230,57,70,0.2) 60%,rgba(255,255,255,0.06))}
-.card-outer.featured .cmain{min-height:480px}
-.feat-label{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
-  color:#fff;background:var(--a);padding:0.3rem 0.7rem;margin-bottom:1.1rem;border-radius:2px;
-}
-.feat-label::before{content:'';width:5px;height:5px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite}
-@keyframes pulse{50%{opacity:0.3}}
-.chip-dev{border-color:rgba(255,200,90,0.35);color:#ffd27a;background:rgba(255,200,90,0.05)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-3px)}
+.pcard.wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr}
+.cmedia{display:flex;flex-direction:column;background:#000}
+.cmain{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg2)}
+.pcard.wide .cmain{aspect-ratio:auto;flex:1;min-height:360px}
+.cmain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform 0.6s cubic-bezier(.2,.7,.2,1)}
+.pcard:hover .cmain img{transform:scale(1.03)}
+.cmain iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.cstrip{display:flex;gap:4px;padding:6px;background:var(--bg2);overflow-x:auto;border-top:1px solid var(--line)}
+.cstrip::-webkit-scrollbar{height:3px}
+.cstrip::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+.tn,.tnv{flex:0 0 58px;height:36px;border-radius:5px;object-fit:cover;cursor:pointer;opacity:0.4;transition:opacity 0.2s;display:block;background:var(--card)}
+.tn:hover,.tnv:hover{opacity:0.8}
+.tn.on,.tnv.on{opacity:1;outline:2px solid var(--a);outline-offset:-2px}
+.tnv{border:none;display:flex;align-items:center;justify-content:center;gap:4px;color:var(--text);font-size:0.62rem;font-family:var(--sans)}
+.tnv svg{width:12px;height:12px}
+.cbody{padding:1.8rem;display:flex;flex-direction:column;gap:1.2rem;flex:1}
+.pcard.wide .cbody{padding:2.4rem;justify-content:space-between}
+.ctop{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.cname{font-family:var(--head);font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1.1}
+.pcard.wide .cname{font-size:2.3rem}
+.cnum{color:var(--dim)}
+.cdesc{font-size:0.88rem;line-height:1.7;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:0.35rem}
+.chip{font-size:0.7rem;padding:0.22rem 0.6rem;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip-a{border-color:rgba(230,57,70,0.35);color:#ff7a84}
+.chip-pro{border-color:rgba(74,222,128,0.3);color:#7ee8a2}
+.crow2{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:auto;padding-top:1.1rem;border-top:1px solid var(--line);font-size:0.78rem;color:var(--muted)}
+.crow2 b{color:var(--text);font-weight:500}
+.cbtns{display:flex;gap:0.5rem;flex-wrap:wrap}
 
 /* ── ABOUT ── */
-.about-wrap{
-  display:grid;grid-template-columns:1fr 1fr;
-  border-top:1px solid rgba(230,57,70,0.1);
-  position:relative;z-index:1;
-}
-.about-wrap::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--a),transparent);
-}
-.aleft{
-  padding:7rem 4rem 7rem 3rem;
-  border-right:1px solid rgba(230,57,70,0.08);
-}
-.aright{
-  padding:7rem 3rem 7rem 4rem;
-  display:flex;flex-direction:column;justify-content:center;
-  background:var(--bg2);
-}
-.a-eyebrow{
-  font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--a2);font-weight:500;
-  display:flex;align-items:center;gap:0.75rem;margin-bottom:1.2rem;
-}
-.a-eyebrow::before{content:'';width:14px;height:1px;background:var(--a)}
-.a-heading{
-  font-family:var(--serif);
-  font-size:clamp(2rem,3.5vw,3rem);
-  font-weight:800;line-height:1.1;
-  letter-spacing:-0.03em;margin-bottom:2.5rem;
-}
-.a-heading .hl{
-  color:var(--a);
-}
-.a-p{font-size:0.88rem;line-height:1.95;color:var(--muted2);font-weight:300}
-.a-p+.a-p{margin-top:1.3rem}
-
-.sg{margin-bottom:2.2rem}
-.sg:last-child{margin-bottom:0}
-.sg-label{
-  font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--muted);font-weight:600;
-  margin-bottom:0.85rem;padding-bottom:0.5rem;
-  border-bottom:1px solid rgba(230,57,70,0.08);
-}
+.about{border-top:1px solid var(--line);background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.a-heading{font-family:var(--head);font-size:clamp(2rem,3.6vw,2.9rem);font-weight:700;letter-spacing:-0.035em;line-height:1.08;margin-bottom:2rem}
+.a-heading .acc{color:var(--a)}
+.a-p{font-size:0.98rem;line-height:1.85;color:var(--muted)}
+.a-p+.a-p{margin-top:1.1rem}
+.sg{padding:1.4rem 0;border-top:1px solid var(--line)}
+.sg:first-child{border-top:none;padding-top:0}
+.sg-label{display:block;margin-bottom:0.9rem}
 .sk-row{display:flex;flex-wrap:wrap;gap:0.4rem}
-.sk{
-  font-size:0.67rem;padding:0.3rem 0.8rem;
-  border:1px solid rgba(255,255,255,0.07);
-  color:var(--muted2);font-weight:400;
-  background:rgba(255,255,255,0.02);
-  transition:all 0.2s;cursor:default;
-}
-.sk:hover{border-color:rgba(230,57,70,0.4);color:var(--a2);background:rgba(230,57,70,0.07)}
-.sk.hi{
-  border-color:rgba(230,57,70,0.25);
-  color:rgba(255,140,140,0.9);
-  background:rgba(230,57,70,0.06);
-}
-.sk.hi:hover{border-color:var(--a);color:var(--a2);background:rgba(230,57,70,0.14)}
+.sk{font-size:0.82rem;padding:0.4rem 0.85rem;border-radius:8px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+.sk.hi{color:var(--text);border-color:var(--line2)}
 
 /* ── CONTACT ── */
-.contact-wrap{
-  padding:8rem 3rem;
-  display:grid;grid-template-columns:1fr 1fr;gap:7rem;
-  border-top:1px solid rgba(230,57,70,0.1);
-  background:var(--bg2);
-  position:relative;z-index:1;overflow:hidden;
-}
-.contact-wrap::after{
-  content:'';position:absolute;
-  width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(230,57,70,0.1) 0%,transparent 70%);
-  right:-100px;top:50%;transform:translateY(-50%);pointer-events:none;
-}
-.c-eyebrow{
-  font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--a2);font-weight:500;
-  display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;
-}
-.c-eyebrow::before{content:'';width:14px;height:1px;background:var(--a)}
-.c-heading{
-  font-family:var(--serif);
-  font-size:clamp(2.5rem,4.5vw,4.5rem);
-  font-weight:800;line-height:0.95;
-  letter-spacing:-0.04em;margin-bottom:1.5rem;
-}
-.c-sub{font-size:0.88rem;color:var(--muted2);line-height:1.8;font-weight:300;margin-bottom:3rem}
-.c-btns{display:flex;flex-direction:column;gap:0.7rem;align-items:flex-start}
-.cright{display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
-.crow{padding:1.2rem 0;border-bottom:1px solid rgba(230,57,70,0.08)}
-.crow:first-child{border-top:1px solid rgba(230,57,70,0.08)}
-.crow-l{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;font-weight:600}
-.crow-v{font-size:0.88rem;font-weight:500;text-decoration:none;color:var(--text);transition:color 0.2s;display:block}
-.crow-v:hover{color:var(--a2)}
+.contact{text-align:center;padding:8rem 0;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;left:50%;top:100%;width:900px;height:600px;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse,rgba(230,57,70,0.18),transparent 65%);pointer-events:none}
+.c-heading{font-family:var(--head);font-size:clamp(2.6rem,6vw,5rem);font-weight:700;letter-spacing:-0.045em;line-height:1;margin:1rem 0 1.4rem}
+.c-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:520px;margin:0 auto 2.4rem}
+.c-btns{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;position:relative}
+.c-links{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;position:relative}
+.c-links a{text-decoration:none;color:var(--muted);transition:color 0.2s}
+.c-links a:hover{color:var(--text)}
 
-/* ── FOOTER ── */
-footer{
-  position:relative;z-index:1;
-  padding:1.6rem 3rem;
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid rgba(230,57,70,0.08);
-}
-.f-name{font-family:var(--serif);font-size:0.82rem;font-weight:800}
-.f-note{font-size:0.62rem;color:var(--muted);letter-spacing:0.07em}
+footer{border-top:1px solid var(--line)}
+.f-in{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
 
 /* ── LIGHTBOX ── */
-.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:999;align-items:center;justify-content:center}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center}
 .lb.open{display:flex}
-.lb img{max-width:90vw;max-height:90vh;object-fit:contain}
-.lb-x{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid rgba(255,255,255,0.15);color:var(--muted2);font-size:0.6rem;padding:0.45rem 1rem;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;font-family:var(--sans);transition:all 0.2s}
-.lb-x:hover{color:#fff;border-color:#fff}
+.lb img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:8px}
+.lb-x{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid var(--line2);color:var(--text);font-size:0.75rem;padding:0.45rem 1rem;border-radius:999px;cursor:pointer;font-family:var(--sans)}
 
-/* ── SCROLL REVEAL ── */
-.up{opacity:0;transform:translateY(24px);transition:opacity 0.7s cubic-bezier(0.4,0,0.2,1),transform 0.7s cubic-bezier(0.4,0,0.2,1)}
+/* ── REVEAL ── */
+.up{opacity:0;transform:translateY(20px);transition:opacity 0.7s cubic-bezier(.2,.7,.2,1),transform 0.7s cubic-bezier(.2,.7,.2,1)}
 .up.in{opacity:1;transform:none}
-.up2{opacity:0;transform:translateY(24px);transition:opacity 0.7s 0.15s cubic-bezier(0.4,0,0.2,1),transform 0.7s 0.15s cubic-bezier(0.4,0,0.2,1)}
-.up2.in{opacity:1;transform:none}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  nav{padding:0.9rem 1.5rem}.nav-links{gap:1.6rem}
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-img{height:60vw;max-height:400px}
-  .hero-content{padding:3.5rem 1.5rem 4rem;border-left:none;border-top:1px solid rgba(230,57,70,0.08)}
-  .hero-stats{gap:1.5rem}
-  .work-wrap{padding:5rem 1.5rem}
-  .card-inner{grid-template-columns:1fr}
-  .card-inner.flip .cmedia{order:0;border-left:none;border-bottom:1px solid rgba(230,57,70,0.08)}
-  .card-inner.flip .cbody{order:0}
-  .cmedia{border-right:none;border-bottom:1px solid rgba(230,57,70,0.08)}
-  .cmain{min-height:260px}
-  .cbody{padding:2rem 1.5rem}
-  .about-wrap{grid-template-columns:1fr}
-  .aleft{padding:5rem 1.5rem 2.5rem;border-right:none;border-bottom:1px solid rgba(230,57,70,0.08)}
-  .aright{padding:2.5rem 1.5rem 5rem}
-  .contact-wrap{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem}
-  footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.4rem;text-align:center}
+@media(max-width:960px){
+  .wrap,.nav-in,.f-in{padding-left:1.25rem;padding-right:1.25rem}
+  .nav-links{display:none}
+  .hero{padding:7rem 0 3rem}
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-photo{max-width:320px;aspect-ratio:1/1}
+  .stats{grid-template-columns:1fr 1fr;margin-top:3rem}
+  .stat:nth-child(3){border-left:none;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .sec{padding:4rem 0}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .feat,.pcard.wide{grid-template-columns:1fr}
+  .feat-media{min-height:0;aspect-ratio:460/215}
+  .feat-body{padding:1.8rem}
+  .pcard.wide .cmain{min-height:0;aspect-ratio:16/9}
+  .pcard.wide .cbody{padding:1.8rem}
+  .grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .meta{grid-template-columns:1fr 1fr}
+  .f-in{flex-direction:column}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
-
 <div class="lb" id="lb" onclick="closeLb()">
-  <button class="lb-x" onclick="event.stopPropagation();closeLb()">Close ✕</button>
+  <button class="lb-x" onclick="event.stopPropagation();closeLb()">✕</button>
   <img id="lb-img" src="" alt="">
 </div>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Ahsen Nur İlter</a>
-  <ul class="nav-links">
-    <li><a href="#work" data-key="n0">Work</a></li>
-    <li><a href="#about" data-key="n1">About</a></li>
-    <li><a href="#contact" data-key="n2">Contact</a></li>
-  </ul>
-  <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+  <div class="nav-in">
+    <a href="#" class="nav-logo"><span class="mark">Aİ</span>Ahsen Nur İlter</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#work" data-key="n0">Work</a></li>
+        <li><a href="#about" data-key="n1">About</a></li>
+        <li><a href="#contact" data-key="n2">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('tr')">TR</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero section">
-  <div class="hero-img">
-    <img src="photo.jpg" alt="Ahsen Nur İlter">
-    <div class="hero-img-bar"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-tag-row up">
-      <span class="hero-dot"></span>
-      <span class="hero-tag-text" data-key="hero-tag">Game Developer</span>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <a href="#work" class="status up"><span class="dot"></span><span data-key="st1">Currently building</span> <b>Build&amp;Boom</b></a>
+        <h1 class="hero-h1 up">Ahsen Nur<br>İlter<span class="acc">.</span></h1>
+        <p class="hero-role up" data-key="hero-tag">Game Developer — Unity · C#</p>
+        <p class="hero-desc up" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Currently developing Build&amp;Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.</p>
+        <div class="hero-btns up">
+          <a href="#work" class="btn btn-fill"><span data-key="hb1">View My Work</span> <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+          <a href="#contact" class="btn btn-outline"><span data-key="hb2">Get in Touch</span></a>
+        </div>
+      </div>
+      <div class="hero-photo up">
+        <img src="photo.jpg" alt="Ahsen Nur İlter">
+        <span class="tag mono">// game_dev.exe</span>
+      </div>
     </div>
-    <h1 class="hero-h1 up">
-      <span data-key="hero-line1">Games worth</span><br>
-      <span class="grad" data-key="hero-line2">playing.</span>
-    </h1>
-    <div class="hero-divider up"></div>
-    <p class="hero-desc up" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Currently developing Build&amp;Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.</p>
-    <div class="hero-stats up">
-      <div class="stat"><span class="stat-n">4+</span><span class="stat-l" data-key="s0">Years</span></div>
-      <div class="stat"><span class="stat-n">600+</span><span class="stat-l" data-key="s1">Wishlists</span></div>
-      <div class="stat"><span class="stat-n">2</span><span class="stat-l" data-key="s2">Shipped</span></div>
-      <div class="stat"><span class="stat-n">VR</span><span class="stat-l" data-key="s3">Meta Quest</span></div>
-    </div>
-    <div class="hero-btns up">
-      <a href="#work" class="btn-fill" data-key="hb1">View My Work <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
-      <a href="#contact" class="btn-outline" data-key="hb2">Get in Touch</a>
-    </div>
-  </div>
-</section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap section">
-  <div class="marquee-track" id="mq">
-    <span class="marquee-item">Game Developer</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Unity</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">C#</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Mobile</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">VR</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Steam</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Meta Quest</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">PC</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">iOS</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Android</span>
-    <span class="marquee-item accent">·</span>
-    <!-- duplicate for seamless loop -->
-    <span class="marquee-item">Game Developer</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Unity</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">C#</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Mobile</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">VR</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Steam</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Meta Quest</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">PC</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">iOS</span>
-    <span class="marquee-item accent">·</span>
-    <span class="marquee-item">Android</span>
-    <span class="marquee-item accent">·</span>
+    <div class="stats up">
+      <div class="stat"><span class="stat-n">4+</span><span class="stat-l" data-key="s0">Years experience</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l" data-key="s1">Projects</span></div>
+      <div class="stat"><span class="stat-n">2</span><span class="stat-l" data-key="s2">Steam titles</span></div>
+      <div class="stat"><span class="stat-n">4</span><span class="stat-l" data-key="s3">Platforms · PC, VR, iOS, Android</span></div>
+    </div>
   </div>
-</div>
+</header>
 
 <!-- WORK -->
-<section id="work" class="work-wrap section">
-  <div class="work-header up">
-    <div>
-      <p class="work-eyebrow" data-key="we">Selected Work</p>
-      <h2 class="work-title" data-key="wt">Projects</h2>
+<section id="work" class="sec">
+  <div class="wrap">
+    <div class="sec-head up">
+      <div>
+        <span class="sec-kicker mono" data-key="we">// selected work</span>
+        <h2 class="sec-title" data-key="wt">Projects</h2>
+      </div>
+      <span class="mono" data-key="wc">6 projects · 2019 — now</span>
     </div>
-    <span class="work-count" data-key="wc">6 Projects</span>
-  </div>
 
-  <!-- BUILD&BOOM -->
-  <div class="card-outer featured up">
-    <div class="card-inner" style="position:relative">
-      <span class="cnum">01</span>
+    <!-- BUILD&BOOM (featured) -->
+    <article class="feat up">
       <div class="cmedia">
-        <div class="cmain"><img id="bb" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5413500/4c6ed436ff70491bfbae4e18d41bfe9bc6f66ba6/header.jpg" alt="Build&amp;Boom" onclick="openLb(this.src)"></div>
+        <div class="feat-media"><img id="bb" src="bb_1.jpg" alt="Build&amp;Boom" onclick="openLb(this.src)"></div>
+        <div class="cstrip"><img class="tn on" src="bb_1.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_2.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_3.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_4.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_5.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_6.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_7.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_8.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_9.jpg" onclick="st(this,'bb')" alt=""></div>
       </div>
-      <div class="cbody">
+      <div class="feat-body">
         <div>
-          <span class="feat-label" data-key="bb-f">Now in Development</span>
-          <p class="cgenre" data-key="bb-g">Party · Competitive · Multiplayer</p>
-          <h2 class="cname">Build&amp;Boom</h2>
-          <div class="cchips"><span class="chip chip-a">Steam</span><span class="chip chip-dev" data-key="bb-c">Coming 2027</span><span class="chip">PC</span><span class="chip">Online &amp; Split-screen</span></div>
-          <p class="cdesc" data-key="bb-d">Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.</p>
-          <table class="ctable">
-            <tr><td data-key="tr">Role</td><td data-key="bb-r">Game Developer</td></tr>
-            <tr><td data-key="tp">Platform</td><td>PC (Steam)</td></tr>
-            <tr><td data-key="tm">Players</td><td>1v1 – 3v3</td></tr>
-          </table>
+          <span class="pill"><span class="dot"></span><span data-key="bb-f">Now in development</span></span>
+          <h3 class="feat-name">Build&amp;Boom</h3>
+          <p class="feat-genre mono" data-key="bb-g">Party · Competitive · Multiplayer</p>
+          <p class="feat-desc" data-key="bb-d">Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.</p>
         </div>
-        <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
-          <a href="https://store.steampowered.com/app/5413500/" target="_blank" class="btn-fill" data-key="bb-b">Wishlist on Steam <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+        <div>
+          <dl class="meta">
+            <div><dt data-key="tr">Role</dt><dd data-key="bb-r">Game Developer</dd></div>
+            <div><dt data-key="tp">Platform</dt><dd>PC · Steam</dd></div>
+            <div><dt data-key="tl">Release</dt><dd>2027</dd></div>
+          </dl>
+          <div class="cbtns" style="margin-top:1.6rem">
+            <a href="https://store.steampowered.com/app/5413500/" target="_blank" class="btn btn-light"><span data-key="bb-b">Wishlist on Steam</span> <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+            <a href="buildandboom.html" class="btn btn-outline"><span data-key="dd-pk">Detailed Overview</span></a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </article>
 
-  <!-- DISHDASH -->
-  <div class="card-outer up">
-    <div class="card-inner flip" style="position:relative">
-      <span class="cnum">02</span>
-      <div class="cmedia">
-        <div class="cmain"><img id="dd" src="Dishdash_1.png" alt="DishDash" onclick="openLb(this.src)"></div>
-        <div class="cstrip">
-          <button class="tnv on" onclick="sv(this,'dd','https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1&autoplay=1')"><svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg><span data-key="vl">Video</span></button>
-          <img class="tn" src="Dishdash_1.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_2.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_3.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_4.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_5.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_6.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_7.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_8.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_9.png"  onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_10.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_11.png" onclick="st(this,'dd')" alt="">
+    <div class="grid">
+      <!-- DISHDASH -->
+      <article class="pcard wide up">
+        <div class="cmedia">
+          <div class="cmain"><img id="dd" src="Dishdash_1.png" alt="DishDash" onclick="openLb(this.src)"></div>
+          <div class="cstrip">
+            <button class="tnv" onclick="sv(this,'dd','qE7A8FPZLzA')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
+            <img class="tn on" src="Dishdash_1.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_2.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_3.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_4.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_5.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_6.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_7.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_8.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_9.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_10.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_11.png" onclick="st(this,'dd')" alt="">
+          </div>
         </div>
-      </div>
-      <div class="cbody">
-        <div>
-          <p class="cgenre" data-key="dd-g">Time Management · Simulation</p>
-          <h2 class="cname">DishDash</h2>
-          <div class="cchips"><span class="chip chip-a">Steam</span><span class="chip">PC</span><span class="chip">Unity</span><span class="chip">Solo Dev</span></div>
-          <p class="cdesc" data-key="dd-d">Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release. Launched with 600+ wishlists before going live.</p>
-          <table class="ctable">
-            <tr><td data-key="tr">Role</td><td data-key="dd-r">Solo Dev — Design, Code, Art, Audio</td></tr>
-            <tr><td data-key="tp">Platform</td><td>PC (Steam)</td></tr>
-            <tr><td data-key="te">Engine</td><td>Unity</td></tr>
-          </table>
+        <div class="cbody">
+          <div>
+            <div class="ctop"><span class="mono" data-key="dd-g">Time Management · Simulation</span><span class="cnum mono">02</span></div>
+            <h3 class="cname" style="margin:0.6rem 0 1rem">DishDash</h3>
+            <p class="cdesc" data-key="dd-d">Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.</p>
+          </div>
+          <div class="chips"><span class="chip chip-a" data-key="dd-c">Released on Steam</span><span class="chip">Solo Dev</span><span class="chip">PC</span><span class="chip">Unity</span></div>
+          <div class="cbtns">
+            <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn btn-fill"><span data-key="dd-b">View on Steam</span> <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+            <a href="presskit.html" class="btn btn-outline"><span data-key="dd-pk">Detailed Overview</span></a>
+          </div>
         </div>
-        <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
-          <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-fill" data-key="dd-b">View on Steam <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
-          <a href="presskit.html" class="btn-outline" data-key="dd-pk">Detailed Overview <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </div>
+      </article>
 
-  <!-- RESTAURANT RUMBLE -->
-  <div class="card-outer up">
-    <div class="card-inner" style="position:relative">
-      <span class="cnum">03</span>
-      <div class="cmedia">
-        <div class="cmain"><img id="rr" src="Rumble.png" alt="Restaurant Rumble" onclick="openLb(this.src)"></div>
-        <div class="cstrip">
-          <button class="tnv on" onclick="sv(this,'rr','https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1&autoplay=1')"><svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg><span data-key="vl">Video</span></button>
-          <img class="tn" src="Rumble.png"   onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_1.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_2.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_3.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_4.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_5.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_6.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_7.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_8.png" onclick="st(this,'rr')" alt="">
+      <!-- RESTAURANT RUMBLE -->
+      <article class="pcard up">
+        <div class="cmedia">
+          <div class="cmain"><img id="rr" src="Rumble.png" alt="Restaurant Rumble" onclick="openLb(this.src)"></div>
+          <div class="cstrip">
+            <button class="tnv" onclick="sv(this,'rr','8wzO7yO2B2M')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
+            <img class="tn on" src="Rumble.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_1.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_2.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_3.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_4.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_5.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_6.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_7.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_8.png" onclick="st(this,'rr')" alt="">
+          </div>
         </div>
-      </div>
-      <div class="cbody">
-        <div>
-          <p class="cgenre" data-key="rr-g">VR · Physics · Prototype</p>
-          <h2 class="cname">Restaurant Rumble</h2>
-          <div class="cchips"><span class="chip">VR</span><span class="chip">Meta Quest</span><span class="chip">Unity</span></div>
-          <p class="cdesc" data-key="rr-d">VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch — focusing on the feel of objects in virtual hands.</p>
-          <table class="ctable">
-            <tr><td data-key="tr">Role</td><td data-key="rr-r">Developer</td></tr>
-            <tr><td data-key="tp">Platform</td><td>PC / Meta Quest</td></tr>
-            <tr><td data-key="te">Engine</td><td>Unity</td></tr>
-          </table>
+        <div class="cbody">
+          <div class="ctop"><span class="mono" data-key="rr-g">VR · Physics · Prototype</span><span class="cnum mono">03</span></div>
+          <h3 class="cname">Restaurant Rumble</h3>
+          <p class="cdesc" data-key="rr-d">VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch.</p>
+          <div class="chips"><span class="chip">VR</span><span class="chip">Meta Quest</span><span class="chip">Unity</span></div>
+          <div class="crow2"><span data-key="rr-r">Developer</span><b>PC / Meta Quest</b></div>
         </div>
-      </div>
-    </div>
-  </div>
+      </article>
 
-  <!-- OYUN EVİ -->
-  <div class="card-outer up">
-    <div class="card-inner flip" style="position:relative">
-      <span class="cnum">04</span>
-      <div class="cmedia">
-        <div class="cmain"><img id="oe" src="OyunEvi.png" alt="Oyun Evi" onclick="openLb(this.src)"></div>
-        <div class="cstrip">
-          <button class="tnv on" onclick="sv(this,'oe','https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1&autoplay=1')"><svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg><span data-key="vl">Video</span></button>
-          <img class="tn" src="OyunEvi.png"   onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_1.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_2.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_3.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_4.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_5.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_6.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_7.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_8.png" onclick="st(this,'oe')" alt="">
+      <!-- OYUN EVİ -->
+      <article class="pcard up">
+        <div class="cmedia">
+          <div class="cmain"><img id="oe" src="OyunEvi.png" alt="Oyun Evi" onclick="openLb(this.src)"></div>
+          <div class="cstrip">
+            <button class="tnv" onclick="sv(this,'oe','12qCKQDFuFw')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
+            <img class="tn on" src="OyunEvi.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_1.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_2.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_3.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_4.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_5.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_6.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_7.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_8.png" onclick="st(this,'oe')" alt="">
+          </div>
         </div>
-      </div>
-      <div class="cbody">
-        <div>
-          <p class="cgenre" data-key="oe-g">Children · Mobile · Freelance</p>
-          <h2 class="cname">Oyun Evi</h2>
-          <div class="cchips"><span class="chip chip-pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span></div>
-          <p class="cdesc" data-key="oe-d">Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently — game logic, UI, asset integration, and deployment to both stores. Visuals provided by client.</p>
-          <table class="ctable">
-            <tr><td data-key="tr">Role</td><td data-key="oe-r">Solo Developer</td></tr>
-            <tr><td data-key="tp">Platform</td><td>Android, iOS</td></tr>
-            <tr><td data-key="tt">Type</td><td data-key="oe-t">Freelance</td></tr>
-          </table>
+        <div class="cbody">
+          <div class="ctop"><span class="mono" data-key="oe-g">Children · Mobile · Freelance</span><span class="cnum mono">04</span></div>
+          <h3 class="cname">Oyun Evi</h3>
+          <p class="cdesc" data-key="oe-d">Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently. Visuals provided by client.</p>
+          <div class="chips"><span class="chip chip-pro" data-key="pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span></div>
+          <div class="crow2"><span data-key="oe-r">Solo Developer</span><b data-key="oe-t">Freelance</b></div>
         </div>
-      </div>
-    </div>
-  </div>
+      </article>
 
-  <!-- ANA DİLİ 2 -->
-  <div class="card-outer up">
-    <div class="card-inner" style="position:relative">
-      <span class="cnum">05</span>
-      <div class="cmedia">
-        <div class="cmain"><img id="ad" src="AnaDili.png" alt="Ana Dili 2" onclick="openLb(this.src)"></div>
-        <div class="cstrip">
-          <button class="tnv on" onclick="sv(this,'ad','https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1&autoplay=1')"><svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg><span data-key="vl">Video</span></button>
-          <img class="tn" src="AnaDili.png"   onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_1.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_2.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_3.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_4.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_5.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_6.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_7.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_8.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_9.png" onclick="st(this,'ad')" alt="">
+      <!-- ANA DİLİ 2 -->
+      <article class="pcard up">
+        <div class="cmedia">
+          <div class="cmain"><img id="ad" src="AnaDili.png" alt="Ana Dili 2" onclick="openLb(this.src)"></div>
+          <div class="cstrip">
+            <button class="tnv" onclick="sv(this,'ad','zCeYFex3bv8')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
+            <img class="tn on" src="AnaDili.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_1.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_2.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_3.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_4.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_5.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_6.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_7.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_8.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_9.png" onclick="st(this,'ad')" alt="">
+          </div>
         </div>
-      </div>
-      <div class="cbody">
-        <div>
-          <p class="cgenre" data-key="ad-g">Educational · Mobile · Internship</p>
-          <h2 class="cname">Ana Dili 2</h2>
-          <div class="cchips"><span class="chip chip-pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Educational</span></div>
-          <p class="cdesc" data-key="ad-d">Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, family vocabulary, animal education — delivered as simulated phone calls and interactive videos.</p>
-          <table class="ctable">
-            <tr><td data-key="tr">Role</td><td data-key="ad-r">Solo Developer</td></tr>
-            <tr><td data-key="tp">Platform</td><td>Android, iOS</td></tr>
-            <tr><td data-key="tt">Type</td><td data-key="ad-t">Internship</td></tr>
-          </table>
+        <div class="cbody">
+          <div class="ctop"><span class="mono" data-key="ad-g">Educational · Mobile · Internship</span><span class="cnum mono">05</span></div>
+          <h3 class="cname">Ana Dili 2</h3>
+          <p class="cdesc" data-key="ad-d">Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, family vocabulary, animal education.</p>
+          <div class="chips"><span class="chip chip-pro" data-key="pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span></div>
+          <div class="crow2"><span data-key="ad-r">Solo Developer</span><b data-key="ad-t">Internship</b></div>
         </div>
-      </div>
-    </div>
-  </div>
+      </article>
 
-  <!-- PICKER 3D -->
-  <div class="card-outer up">
-    <div class="card-inner flip" style="position:relative">
-      <span class="cnum">06</span>
-      <div class="cmedia">
-        <div class="cmain"><img id="pk" src="Picker.png" alt="Picker 3D" onclick="openLb(this.src)"></div>
-        <div class="cstrip">
-          <button class="tnv on" onclick="sv(this,'pk','https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1&autoplay=1')"><svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg><span data-key="vl">Video</span></button>
-          <img class="tn" src="Picker.png"   onclick="st(this,'pk')" alt=""><img class="tn" src="picker_1.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_2.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_3.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_4.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_5.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_6.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_7.png" onclick="st(this,'pk')" alt="">
+      <!-- PICKER 3D -->
+      <article class="pcard up">
+        <div class="cmedia">
+          <div class="cmain"><img id="pk" src="Picker.png" alt="Picker 3D" onclick="openLb(this.src)"></div>
+          <div class="cstrip">
+            <button class="tnv" onclick="sv(this,'pk','O5bIFwww28c')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
+            <img class="tn on" src="Picker.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_1.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_2.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_3.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_4.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_5.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_6.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_7.png" onclick="st(this,'pk')" alt="">
+          </div>
         </div>
-      </div>
-      <div class="cbody">
-        <div>
-          <p class="cgenre" data-key="pk-g">Casual · 3D · University</p>
-          <h2 class="cname">Picker 3D</h2>
-          <div class="cchips"><span class="chip">3D</span><span class="chip">Casual</span><span class="chip">Unity</span></div>
-          <p class="cdesc" data-key="pk-d">Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems — object pooling and core casual loop mechanics.</p>
-          <table class="ctable">
-            <tr><td data-key="tr">Role</td><td data-key="pk-r">Solo Developer</td></tr>
-            <tr><td data-key="tp">Platform</td><td>PC / Mobile</td></tr>
-            <tr><td data-key="te">Engine</td><td>Unity</td></tr>
-          </table>
+        <div class="cbody">
+          <div class="ctop"><span class="mono" data-key="pk-g">Casual · 3D · University</span><span class="cnum mono">06</span></div>
+          <h3 class="cname">Picker 3D</h3>
+          <p class="cdesc" data-key="pk-d">Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems.</p>
+          <div class="chips"><span class="chip">3D</span><span class="chip">Casual</span><span class="chip">Unity</span></div>
+          <div class="crow2"><span data-key="pk-r">Solo Developer</span><b>PC / Mobile</b></div>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="about-wrap section">
-  <div class="aleft up">
-    <p class="a-eyebrow" data-key="ae">About</p>
-    <h2 class="a-heading"><span data-key="ah1">I make things</span><br><span class="hl" data-key="ah2">work. And feel right.</span></h2>
-    <p class="a-p about-p0">Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.</p>
-    <p class="a-p about-p1">Building DishDash solo meant owning every decision from prototype to Steam release. That pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
-    <p class="a-p about-p2">I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.</p>
-  </div>
-  <div class="aright up2">
-    <div class="sg">
-      <div class="sg-label" data-key="ske">Game Engines</div>
-      <div class="sk-row"><span class="sk hi">Unity</span><span class="sk">Unreal Engine</span><span class="sk">Godot</span></div>
+<section id="about" class="sec about">
+  <div class="wrap about-grid">
+    <div class="up">
+      <span class="sec-kicker mono" data-key="ae">// about</span>
+      <h2 class="a-heading"><span data-key="ah1">I make things work —</span><br><span class="acc" data-key="ah2">and feel right.</span></h2>
+      <p class="a-p about-p0">Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.</p>
+      <p class="a-p about-p1">Building DishDash solo meant owning every decision from prototype to Steam release. That pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
+      <p class="a-p about-p2">I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.</p>
     </div>
-    <div class="sg">
-      <div class="sg-label" data-key="skl">Languages</div>
-      <div class="sk-row"><span class="sk hi">C#</span><span class="sk hi">Python</span><span class="sk">Java</span><span class="sk">C++</span></div>
-    </div>
-    <div class="sg">
-      <div class="sg-label" data-key="skt">Tools &amp; Platforms</div>
-      <div class="sk-row">
-        <span class="sk hi">Git / GitHub</span><span class="sk hi">Android</span><span class="sk hi">iOS</span><span class="sk hi">Meta Quest</span><span class="sk hi">Steam / PC</span><span class="sk">Blender</span><span class="sk">Figma</span><span class="sk">Photoshop</span><span class="sk">Rider</span><span class="sk">WebGL</span>
+    <div class="up">
+      <div class="sg">
+        <span class="sg-label mono" data-key="ske">Game Engines</span>
+        <div class="sk-row"><span class="sk hi">Unity</span><span class="sk">Unreal Engine</span><span class="sk">Godot</span></div>
+      </div>
+      <div class="sg">
+        <span class="sg-label mono" data-key="skl">Languages</span>
+        <div class="sk-row"><span class="sk hi">C#</span><span class="sk hi">Python</span><span class="sk">Java</span><span class="sk">C++</span></div>
+      </div>
+      <div class="sg">
+        <span class="sg-label mono" data-key="skt">Tools &amp; Platforms</span>
+        <div class="sk-row"><span class="sk hi">Git / GitHub</span><span class="sk hi">Steam / PC</span><span class="sk hi">Meta Quest</span><span class="sk hi">Android</span><span class="sk hi">iOS</span><span class="sk">Blender</span><span class="sk">Figma</span><span class="sk">Photoshop</span><span class="sk">Rider</span><span class="sk">WebGL</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact-wrap section">
-  <div class="up">
-    <p class="c-eyebrow" data-key="ce">Contact</p>
-    <h2 class="c-heading" data-key="ch">Contact</h2>
-    <p class="c-sub" data-key="cs">Open to full-time positions and internships in game development. Feel free to reach out.</p>
+<section id="contact" class="contact">
+  <div class="wrap up">
+    <span class="mono" data-key="ce">// contact</span>
+    <h2 class="c-heading" data-key="ch">Let's make something.</h2>
+    <p class="c-sub" data-key="cs">Open to full-time positions in game development. Feel free to reach out.</p>
     <div class="c-btns">
-      <a href="mailto:ahsennurilter@gmail.com" class="btn-fill" data-key="cb1">Send an Email <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
-      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn-outline" data-key="cb2">LinkedIn</a>
+      <a href="mailto:ahsennurilter@gmail.com" class="btn btn-fill">ahsennurilter@gmail.com</a>
+      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn btn-outline">LinkedIn <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
     </div>
-  </div>
-  <div class="cright up2">
-    <div class="crow"><p class="crow-l" data-key="cl0">Email</p><a href="mailto:ahsennurilter@gmail.com" class="crow-v">ahsennurilter@gmail.com</a></div>
-    <div class="crow"><p class="crow-l" data-key="cl1">Alt Email</p><a href="mailto:ahsennurilter@hotmail.com" class="crow-v">ahsennurilter@hotmail.com</a></div>
-    <div class="crow"><p class="crow-l" data-key="cl2">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="crow-v">Ahsen Nur İlter</a></div>
-    <div class="crow"><p class="crow-l">Build&amp;Boom</p><a href="https://store.steampowered.com/app/5413500/" target="_blank" class="crow-v">Steam · Wishlist</a></div>
-    <div class="crow"><p class="crow-l" data-key="cl3">Steam</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="crow-v">DishDash · Steam Page</a></div>
+    <div class="c-links mono">
+      <a href="https://store.steampowered.com/app/5413500/" target="_blank">Build&amp;Boom ↗</a>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank">DishDash ↗</a>
+      <a href="mailto:ahsennurilter@hotmail.com">ahsennurilter@hotmail.com</a>
+    </div>
   </div>
 </section>
 
-<footer class="section">
-  <span class="f-name">Ahsen Nur İlter</span>
-  <span class="f-note" data-key="fn">Game Developer · <script>document.write(new Date().getFullYear())</script></span>
+<footer>
+  <div class="f-in mono">
+    <span>© <span id="yr"></span> Ahsen Nur İlter</span>
+    <span data-key="fn">Game Developer</span>
+  </div>
 </footer>
 
 <script>
@@ -797,117 +483,87 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
 function st(tn,id){
   tn.closest('.cstrip').querySelectorAll('.tn,.tnv').forEach(t=>t.classList.remove('on'));
   tn.classList.add('on');
-  const box=document.getElementById(id).closest('.cmain');
-  const fr=box.querySelector('iframe');if(fr)fr.remove();
-  const img=document.getElementById(id);img.style.display='block';img.src=tn.src;
+  const img=document.getElementById(id);
+  const fr=img.parentElement.querySelector('iframe');if(fr)fr.remove();
+  img.style.display='block';img.src=tn.src;
 }
-function sv(btn,id,url){
+function sv(btn,id,vid){
   btn.closest('.cstrip').querySelectorAll('.tn,.tnv').forEach(t=>t.classList.remove('on'));
   btn.classList.add('on');
-  const box=document.getElementById(id).closest('.cmain');
-  const img=document.getElementById(id);img.style.display='none';
+  const img=document.getElementById(id),box=img.closest('.cmain');
+  img.style.display='none';
   let fr=box.querySelector('iframe');
   if(!fr){fr=document.createElement('iframe');fr.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';fr.allowFullscreen=true;box.appendChild(fr)}
-  fr.src=url;
+  fr.src='https://www.youtube.com/embed/'+vid+'?rel=0&modestbranding=1&autoplay=1';
 }
 
 const T={
   en:{
     'n0':'Work','n1':'About','n2':'Contact',
-    'hero-tag':'Game Developer','hero-line1':'Games worth','hero-line2':'playing.',
+    'st1':'Currently building',
+    'hero-tag':'Game Developer — Unity · C#',
     'hero-desc':'4+ years building games across mobile, VR, and PC. Currently developing Build&Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.',
     'hb1':'View My Work','hb2':'Get in Touch',
-    's0':'Years','s1':'Wishlists','s2':'Shipped','s3':'Meta Quest',
-    'we':'Selected Work','wt':'Projects','wc':'6 Projects','vl':'Video',
-    'tr':'Role','tp':'Platform','te':'Engine','tt':'Type',
-    'bb-f':'Now in Development','bb-g':'Party · Competitive · Multiplayer','bb-c':'Coming 2027','bb-r':'Game Developer','bb-b':'Wishlist on Steam','tm':'Players',
+    's0':'Years experience','s1':'Projects','s2':'Steam titles','s3':'Platforms · PC, VR, iOS, Android',
+    'we':'// selected work','wt':'Projects','wc':'6 projects','vl':'Video',
+    'tr':'Role','tp':'Platform','tl':'Release','pro':'Professional',
+    'bb-f':'Now in development','bb-g':'Party · Competitive · Multiplayer','bb-r':'Game Developer','bb-b':'Wishlist on Steam',
     'bb-d':'Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.',
-    'dd-g':'Time Management · Simulation','dd-d':'Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.','dd-r':'Solo Dev — Design, Code, Art, Audio','dd-b':'View on Steam','dd-pk':'Detailed Overview',
+    'dd-g':'Time Management · Simulation','dd-c':'Released on Steam','dd-d':'Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.','dd-b':'View on Steam','dd-pk':'Detailed Overview',
     'rr-g':'VR · Physics · Prototype','rr-d':'VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch.','rr-r':'Developer',
-    'oe-g':'Children · Mobile · Freelance','oe-d':"Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently. Visuals provided by client.",'oe-r':'Solo Developer','oe-t':'Freelance','oe-n':'Visuals pending client approval — NDA applies',
-    'ad-g':'Educational · Mobile · Internship','ad-d':'Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, family vocabulary, animal education.','ad-r':'Solo Developer','ad-t':'Internship','ad-n':'Visuals pending studio approval — NDA applies',
+    'oe-g':'Children · Mobile · Freelance','oe-d':"Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently. Visuals provided by client.",'oe-r':'Solo Developer','oe-t':'Freelance',
+    'ad-g':'Educational · Mobile · Internship','ad-d':'Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, family vocabulary, animal education.','ad-r':'Solo Developer','ad-t':'Internship',
     'pk-g':'Casual · 3D · University','pk-d':'Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems.','pk-r':'Solo Developer',
-    'ae':'About','ah1':'I make things','ah2':'work. And feel right.',
+    'ae':'// about','ah1':'I make things work —','ah2':'and feel right.',
     'about-p0':"Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.",
     'about-p1':'Building DishDash solo meant owning every decision from prototype to Steam release. That pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.',
     'about-p2':"I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.",
     'ske':'Game Engines','skl':'Languages','skt':'Tools & Platforms',
-    'ce':'Contact','ch':'Contact','cs':'Open to full-time positions and internships in game development. Feel free to reach out.',
-    'cb1':'Send an Email','cb2':'LinkedIn',
-    'cl0':'Email','cl1':'Alt Email','cl2':'LinkedIn','cl3':'Steam',
+    'ce':'// contact','ch':"Let's make something.",'cs':'Open to full-time positions in game development. Feel free to reach out.',
     'fn':'Game Developer',
   },
   tr:{
     'n0':'Projeler','n1':'Hakkımda','n2':'İletişim',
-    'hero-tag':'Oyun Geliştirici','hero-line1':'Oynanmaya','hero-line2':'değer.',
+    'st1':'Şu an geliştiriyorum:',
+    'hero-tag':'Oyun Geliştirici — Unity · C#',
     'hero-desc':'4+ yıldır mobil, VR ve PC\'de oyun geliştiriyorum. Şu anda Steam\'e gelecek rekabetçi parti oyunu Build&Boom\'u geliştiriyorum. Daha önce DishDash\'i tek başıma Steam\'de yayınladım.',
     'hb1':'Projeleri Gör','hb2':'İletişime Geç',
-    's0':'Yıl','s1':'İstek Listesi','s2':'Yayınlanan','s3':'Meta Quest',
-    'we':'Seçili Projeler','wt':'Projeler','wc':'6 Proje','vl':'Video',
-    'tr':'Rol','tp':'Platform','te':'Motor','tt':'Tür',
-    'bb-f':'Şu An Geliştiriliyor','bb-g':'Parti · Rekabetçi · Çok Oyunculu','bb-c':'2027\'de Geliyor','bb-r':'Oyun Geliştirici','bb-b':'Steam\'de İstek Listesine Ekle','tm':'Oyuncu',
+    's0':'Yıl deneyim','s1':'Proje','s2':'Steam oyunu','s3':'Platform · PC, VR, iOS, Android',
+    'we':'// seçili projeler','wt':'Projeler','wc':'6 proje','vl':'Video',
+    'tr':'Rol','tp':'Platform','tl':'Çıkış','pro':'Profesyonel',
+    'bb-f':'Şu an geliştiriliyor','bb-g':'Parti · Rekabetçi · Çok Oyunculu','bb-r':'Oyun Geliştirici','bb-b':'Steam\'de İstek Listesine Ekle',
     'bb-d':'Kaotik, rekabetçi bir parti oyunu: bir takım plana göre yapıyı yükseltmeye çalışırken diğeri taşlar, rüzgâr fanları, dronlar, domatesler ve tuzaklarla onu yıkmak için her şeyi yapar. 1v1\'den 3v3\'e üç mod, online ya da yerel bölünmüş ekran.',
-    'dd-g':'Zaman Yönetimi · Simülasyon','dd-d':'Gameplay, UI/UX, sanat, ses ve Steam yayınını tek başıma yönettiğim solo restoran simülasyonu.','dd-r':'Solo Geliştirici — Tasarım, Kod, Sanat, Ses','dd-b':'Steam\'de Gör','dd-pk':'Ayrıntılı İncele',
+    'dd-g':'Zaman Yönetimi · Simülasyon','dd-c':'Steam\'de yayında','dd-d':'Gameplay, UI/UX, sanat, ses ve Steam yayınını tek başıma yönettiğim restoran simülasyonu — oyuncular yemek hazırlar, müşterilere servis yapar ve baskı altında kaosu yönetir.','dd-b':'Steam\'de Gör','dd-pk':'Ayrıntılı İncele',
     'rr-g':'VR · Fizik · Prototip','rr-d':'Bulaşık yıkama ve yemek pişirme üzerine VR mekanik prototipi. Fizik tabanlı el etkileşimleri sıfırdan geliştirildi.','rr-r':'Geliştirici',
-    'oe-g':'Çocuk · Mobil · Freelance','oe-d':'Boyama ve puzzle mekanikli çocuk mobil oyunu. Tüm geliştirme sürecini bağımsız yürüttüm.','oe-r':'Solo Geliştirici','oe-t':'Freelance','oe-n':'Görseller müşteri onayı bekleniyor (NDA)',
-    'ad-g':'Eğitim · Mobil · Staj','ad-d':'Azerbaycan dilini mini oyunlarla öğreten çocuk eğitim oyunu — simüle telefon görüşmeleri ve interaktif videolar aracılığıyla.','ad-r':'Solo Geliştirici','ad-t':'Staj','ad-n':'Görseller stüdyo onayı bekleniyor (NDA)',
+    'oe-g':'Çocuk · Mobil · Freelance','oe-d':'Boyama ve puzzle mekanikli çocuk mobil oyunu. Tüm geliştirme sürecini bağımsız yürüttüm. Görseller müşteri tarafından sağlandı.','oe-r':'Solo Geliştirici','oe-t':'Freelance',
+    'ad-g':'Eğitim · Mobil · Staj','ad-d':'Azerbaycan dilini mini oyunlarla öğreten çocuk eğitim oyunu — simüle telefon görüşmeleri ve interaktif videolar aracılığıyla.','ad-r':'Solo Geliştirici','ad-t':'Staj',
     'pk-g':'Casual · 3D · Üniversite','pk-d':'Üniversite projesi olarak solo geliştirilen casual 3D mobil oyun. Object pooling dahil tüm sistemleri sıfırdan kurdum.','pk-r':'Solo Geliştirici',
-    'ae':'Hakkımda','ah1':'Çalışmasını','ah2':'sağlarım. Ve doğru hissettiririm.',
+    'ae':'// hakkımda','ah1':'İşleyen şeyler yaparım —','ah2':'ve doğru hissettiren.',
+    'about-p0':"Mobil, VR ve PC'de 4+ yıl Unity ve C# deneyimli oyun geliştiriciyim. Erken prototipten son yayına kadar tüm sürece odaklanıyorum; özellikle oyuncunun elinde iyi hissettiren mekaniklere önem veriyorum.",
+    'about-p1':"DishDash'i tek başıma geliştirmek, prototipten Steam yayınına kadar her kararı üstlenmek demekti. Bu bana kapsamı netleştirmeyi, öncelik belirlemeyi ve gerçekten bir şey çıkarmayı öğretti.",
+    'about-p2':'Ticari, freelance ve akademik projelerde çalıştım — her zaman uyum sağlayan, çözmeye değer bir sonraki problemi arayan biri olarak.',
     'ske':'Oyun Motorları','skl':'Programlama Dilleri','skt':'Araçlar ve Platformlar',
-    'ce':'İletişim','ch':'İletişim','cs':'Oyun geliştirme alanında tam zamanlı pozisyonlara ve staj tekliflerine açığım.',
-    'cb1':'E-posta Gönder','cb2':'LinkedIn',
-    'cl0':'E-posta','cl1':'Alt E-posta','cl2':'LinkedIn','cl3':'Steam',
+    'ce':'// iletişim','ch':'Birlikte bir şey yapalım.','cs':'Oyun geliştirme alanında tam zamanlı pozisyonlara açığım. Ulaşmaktan çekinme.',
     'fn':'Oyun Geliştirici',
-    'about-p0':"Mobil, VR ve PC'de 4+ yıl Unity ve C# deneyimli oyun geliştiriciyim. Erken prototipten son deploy'a tam pipeline'a odaklanıyorum.",
-    'about-p1':"DishDash'i solo geliştirmek her kararı üstlenmekti — kapsamı netleştirmeyi ve gerçek bir şey çıkarmayı öğretti.",
-    'about-p2':'Ticari, freelance ve akademik projelerde çalıştım — her zaman adapte olabilen biri.',
   }
 };
 
 function applyLang(lang){
   const t=T[lang];if(!t)return;
-  document.querySelectorAll('[data-key]').forEach(el=>{
-    const k=el.dataset.key;if(!t[k])return;
-    if(el.tagName==='A'&&el.querySelector('svg'))el.childNodes[0].textContent=t[k]+' ';
-    else el.textContent=t[k];
-  });
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-key]').forEach(el=>{const k=el.dataset.key;if(t[k])el.textContent=t[k]});
   document.querySelectorAll('.about-p0,.about-p1,.about-p2').forEach((el,i)=>{if(t['about-p'+i])el.textContent=t['about-p'+i]});
-  const fn=document.querySelector('.f-note');
-  if(fn)fn.innerHTML=(t['fn']||'')+' · '+new Date().getFullYear();
 }
 function setLang(lang){
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===lang));
   applyLang(lang);localStorage.setItem('lang',lang);
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  applyLang(localStorage.getItem('lang')||'en');
-
-  // auto videos
-  [['dd','https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1'],
-   ['rr','https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1'],
-   ['oe','https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1'],
-   ['ad','https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1'],
-   ['pk','https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1'],
-  ].forEach(([id,url])=>{
-    const img=document.getElementById(id);if(!img)return;
-    const box=img.closest('.cmain');
-    img.style.display='none';
-    const fr=document.createElement('iframe');
-    fr.src=url;fr.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
-    fr.allowFullscreen=true;
-    Object.assign(fr.style,{position:'absolute',inset:'0',width:'100%',height:'100%',border:'none',display:'block'});
-    box.appendChild(fr);
-  });
-
-  // scroll reveal
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*60);obs.unobserve(e.target)}
-    });
-  },{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.up,.up2').forEach(el=>obs.observe(el));
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  setLang(localStorage.getItem('lang')||'en');
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.up').forEach(el=>obs.observe(el));
 });
 </script>
 </body>
