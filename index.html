@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahsen Nur İlter — Game Developer</title>
-<meta name="description" content="Ahsen Nur İlter — Game developer. Currently building Build&Boom. Shipped DishDash on Steam.">
+<meta name="description" content="Ahsen Nur İlter — Game developer working in Unity and Unreal Engine. Currently building Build&amp;Boom; shipped DishDash on Steam.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://asennur.github.io/">
+<meta property="og:title" content="Ahsen Nur İlter — Game Developer">
+<meta property="og:description" content="Currently building Build&amp;Boom, a competitive party game for Steam. Shipped DishDash on Steam.">
+<meta property="og:image" content="https://asennur.github.io/img/bb_1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://asennur.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e63946'/%3E%3Ctext x='16' y='21.5' font-family='Arial' font-weight='700' font-size='13' fill='white' text-anchor='middle'%3EA%C4%B0%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -129,7 +137,7 @@ nav{
 .feat-name{font-family:var(--head);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:700;letter-spacing:-0.045em;line-height:1;margin:1.2rem 0 0.6rem}
 .feat-genre{margin-bottom:1.3rem}
 .feat-desc{font-size:0.95rem;line-height:1.75;color:var(--muted)}
-.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-top:1.4rem;border-top:1px solid var(--line)}
 .meta dt{font-size:0.72rem;color:var(--dim);margin-bottom:0.3rem}
 .meta dd{font-size:0.88rem;font-weight:500}
 
@@ -141,7 +149,8 @@ nav{
 }
 .pcard:hover{border-color:var(--line2);transform:translateY(-3px)}
 .pcard.wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr}
-.cmedia{display:flex;flex-direction:column;background:#000}
+.cmedia{display:flex;flex-direction:column;background:#000;min-width:0}
+.feat>*,.pcard>*{min-width:0}
 .cmain{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg2)}
 .pcard.wide .cmain{aspect-ratio:auto;flex:1;min-height:360px}
 .cmain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform 0.6s cubic-bezier(.2,.7,.2,1)}
@@ -220,12 +229,12 @@ footer{border-top:1px solid var(--line)}
   .stat:nth-child(n+3){border-top:1px solid var(--line)}
   .sec{padding:4rem 0}
   .sec-head{flex-direction:column;align-items:flex-start}
-  .feat,.pcard.wide{grid-template-columns:1fr}
+  .feat,.pcard.wide{grid-template-columns:minmax(0,1fr)}
   .feat-media{min-height:0;aspect-ratio:460/215}
   .feat-body{padding:1.8rem}
   .pcard.wide .cmain{min-height:0;aspect-ratio:16/9}
   .pcard.wide .cbody{padding:1.8rem}
-  .grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:minmax(0,1fr)}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .meta{grid-template-columns:1fr 1fr}
   .f-in{flex-direction:column}
@@ -248,6 +257,7 @@ footer{border-top:1px solid var(--line)}
         <li><a href="#work" data-key="n0">Work</a></li>
         <li><a href="#about" data-key="n1">About</a></li>
         <li><a href="#contact" data-key="n2">Contact</a></li>
+        <li><a href="Ahsen-Nur-Ilter-CV.pdf" target="_blank" data-key="n3">Resume</a></li>
       </ul>
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -264,15 +274,16 @@ footer{border-top:1px solid var(--line)}
       <div>
         <a href="#work" class="status up"><span class="dot"></span><span data-key="st1">Currently building</span> <b>Build&amp;Boom</b></a>
         <h1 class="hero-h1 up">Ahsen Nur<br>İlter<span class="acc">.</span></h1>
-        <p class="hero-role up" data-key="hero-tag">Game Developer — Unity · C#</p>
-        <p class="hero-desc up" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Currently developing Build&amp;Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.</p>
+        <p class="hero-role up" data-key="hero-tag">Game Developer — Unity · Unreal Engine · C# · C++</p>
+        <p class="hero-desc up" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Currently developing Build&amp;Boom solo in Unreal Engine 5, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.</p>
         <div class="hero-btns up">
           <a href="#work" class="btn btn-fill"><span data-key="hb1">View My Work</span> <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
           <a href="#contact" class="btn btn-outline"><span data-key="hb2">Get in Touch</span></a>
+          <a href="Ahsen-Nur-Ilter-CV.pdf" target="_blank" class="btn btn-outline"><span data-key="cv">Resume (PDF)</span></a>
         </div>
       </div>
       <div class="hero-photo up">
-        <img src="photo.jpg" alt="Ahsen Nur İlter">
+        <img src="img/photo.jpg" alt="Ahsen Nur İlter">
         <span class="tag mono">// game_dev.exe</span>
       </div>
     </div>
@@ -294,25 +305,26 @@ footer{border-top:1px solid var(--line)}
         <span class="sec-kicker mono" data-key="we">// selected work</span>
         <h2 class="sec-title" data-key="wt">Projects</h2>
       </div>
-      <span class="mono" data-key="wc">6 projects · 2019 — now</span>
+      <span class="mono" data-key="wc">6 projects</span>
     </div>
 
     <!-- BUILD&BOOM (featured) -->
     <article class="feat up">
       <div class="cmedia">
-        <div class="feat-media"><img id="bb" src="bb_1.jpg" alt="Build&amp;Boom" onclick="openLb(this.src)"></div>
-        <div class="cstrip"><img class="tn on" src="bb_1.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_2.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_3.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_4.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_5.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_6.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_7.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_8.jpg" onclick="st(this,'bb')" alt=""><img class="tn" src="bb_9.jpg" onclick="st(this,'bb')" alt=""></div>
+        <div class="feat-media"><img id="bb" src="img/bb_1.jpg" alt="Build&amp;Boom" onclick="openLb(this.src)"></div>
+        <div class="cstrip"><img loading="lazy" class="tn on" src="img/t/bb_1.jpg" data-full="img/bb_1.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_2.jpg" data-full="img/bb_2.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_3.jpg" data-full="img/bb_3.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_4.jpg" data-full="img/bb_4.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_5.jpg" data-full="img/bb_5.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_6.jpg" data-full="img/bb_6.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_7.jpg" data-full="img/bb_7.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_8.jpg" data-full="img/bb_8.jpg" onclick="st(this,'bb')" alt=""><img loading="lazy" class="tn" src="img/t/bb_9.jpg" data-full="img/bb_9.jpg" onclick="st(this,'bb')" alt=""></div>
       </div>
       <div class="feat-body">
         <div>
           <span class="pill"><span class="dot"></span><span data-key="bb-f">Now in development</span></span>
           <h3 class="feat-name">Build&amp;Boom</h3>
           <p class="feat-genre mono" data-key="bb-g">Party · Competitive · Multiplayer</p>
-          <p class="feat-desc" data-key="bb-d">Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.</p>
+          <p class="feat-desc" data-key="bb-d">Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, chickens and traps. Three modes from 1v1 to 3v3, online or local split-screen.</p>
         </div>
         <div>
           <dl class="meta">
-            <div><dt data-key="tr">Role</dt><dd data-key="bb-r">Game Developer</dd></div>
+            <div><dt data-key="tr">Role</dt><dd data-key="bb-r">Solo Developer</dd></div>
+            <div><dt data-key="te">Engine</dt><dd>Unreal Engine</dd></div>
             <div><dt data-key="tp">Platform</dt><dd>PC · Steam</dd></div>
             <div><dt data-key="tl">Release</dt><dd>2027</dd></div>
           </dl>
@@ -328,10 +340,10 @@ footer{border-top:1px solid var(--line)}
       <!-- DISHDASH -->
       <article class="pcard wide up">
         <div class="cmedia">
-          <div class="cmain"><img id="dd" src="Dishdash_1.png" alt="DishDash" onclick="openLb(this.src)"></div>
+          <div class="cmain"><img id="dd" src="img/dishdash_1.jpg" alt="DishDash" onclick="openLb(this.src)"></div>
           <div class="cstrip">
             <button class="tnv" onclick="sv(this,'dd','qE7A8FPZLzA')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
-            <img class="tn on" src="Dishdash_1.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_2.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_3.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_4.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_5.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_6.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_7.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_8.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_9.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_10.png" onclick="st(this,'dd')" alt=""><img class="tn" src="Dishdash_11.png" onclick="st(this,'dd')" alt="">
+            <img loading="lazy" class="tn on" src="img/t/dishdash_1.jpg" data-full="img/dishdash_1.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_2.jpg" data-full="img/dishdash_2.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_3.jpg" data-full="img/dishdash_3.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_4.jpg" data-full="img/dishdash_4.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_5.jpg" data-full="img/dishdash_5.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_6.jpg" data-full="img/dishdash_6.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_7.jpg" data-full="img/dishdash_7.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_8.jpg" data-full="img/dishdash_8.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_9.jpg" data-full="img/dishdash_9.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_10.jpg" data-full="img/dishdash_10.jpg" onclick="st(this,'dd')" alt=""><img loading="lazy" class="tn" src="img/t/dishdash_11.jpg" data-full="img/dishdash_11.jpg" onclick="st(this,'dd')" alt="">
           </div>
         </div>
         <div class="cbody">
@@ -340,7 +352,7 @@ footer{border-top:1px solid var(--line)}
             <h3 class="cname" style="margin:0.6rem 0 1rem">DishDash</h3>
             <p class="cdesc" data-key="dd-d">Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.</p>
           </div>
-          <div class="chips"><span class="chip chip-a" data-key="dd-c">Released on Steam</span><span class="chip">Solo Dev</span><span class="chip">PC</span><span class="chip">Unity</span></div>
+          <div class="chips"><span class="chip chip-a" data-key="dd-c">Released on Steam</span><span class="chip">Solo Dev</span><span class="chip">PC · Mac</span><span class="chip">Unity</span></div>
           <div class="cbtns">
             <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn btn-fill"><span data-key="dd-b">View on Steam</span> <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
             <a href="presskit.html" class="btn btn-outline"><span data-key="dd-pk">Detailed Overview</span></a>
@@ -351,10 +363,10 @@ footer{border-top:1px solid var(--line)}
       <!-- RESTAURANT RUMBLE -->
       <article class="pcard up">
         <div class="cmedia">
-          <div class="cmain"><img id="rr" src="Rumble.png" alt="Restaurant Rumble" onclick="openLb(this.src)"></div>
+          <div class="cmain"><img id="rr" src="img/rumble.jpg" alt="Restaurant Rumble" onclick="openLb(this.src)"></div>
           <div class="cstrip">
             <button class="tnv" onclick="sv(this,'rr','8wzO7yO2B2M')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
-            <img class="tn on" src="Rumble.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_1.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_2.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_3.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_4.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_5.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_6.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_7.png" onclick="st(this,'rr')" alt=""><img class="tn" src="rumble_8.png" onclick="st(this,'rr')" alt="">
+            <img loading="lazy" class="tn on" src="img/t/rumble.jpg" data-full="img/rumble.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_1.jpg" data-full="img/rumble_1.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_2.jpg" data-full="img/rumble_2.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_3.jpg" data-full="img/rumble_3.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_4.jpg" data-full="img/rumble_4.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_5.jpg" data-full="img/rumble_5.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_6.jpg" data-full="img/rumble_6.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_7.jpg" data-full="img/rumble_7.jpg" onclick="st(this,'rr')" alt=""><img loading="lazy" class="tn" src="img/t/rumble_8.jpg" data-full="img/rumble_8.jpg" onclick="st(this,'rr')" alt="">
           </div>
         </div>
         <div class="cbody">
@@ -369,10 +381,10 @@ footer{border-top:1px solid var(--line)}
       <!-- OYUN EVİ -->
       <article class="pcard up">
         <div class="cmedia">
-          <div class="cmain"><img id="oe" src="OyunEvi.png" alt="Oyun Evi" onclick="openLb(this.src)"></div>
+          <div class="cmain"><img id="oe" src="img/oyunevi.jpg" alt="Oyun Evi" onclick="openLb(this.src)"></div>
           <div class="cstrip">
             <button class="tnv" onclick="sv(this,'oe','12qCKQDFuFw')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
-            <img class="tn on" src="OyunEvi.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_1.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_2.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_3.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_4.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_5.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_6.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_7.png" onclick="st(this,'oe')" alt=""><img class="tn" src="oyunevi_8.png" onclick="st(this,'oe')" alt="">
+            <img loading="lazy" class="tn on" src="img/t/oyunevi.jpg" data-full="img/oyunevi.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_1.jpg" data-full="img/oyunevi_1.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_2.jpg" data-full="img/oyunevi_2.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_3.jpg" data-full="img/oyunevi_3.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_4.jpg" data-full="img/oyunevi_4.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_5.jpg" data-full="img/oyunevi_5.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_6.jpg" data-full="img/oyunevi_6.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_7.jpg" data-full="img/oyunevi_7.jpg" onclick="st(this,'oe')" alt=""><img loading="lazy" class="tn" src="img/t/oyunevi_8.jpg" data-full="img/oyunevi_8.jpg" onclick="st(this,'oe')" alt="">
           </div>
         </div>
         <div class="cbody">
@@ -387,16 +399,16 @@ footer{border-top:1px solid var(--line)}
       <!-- ANA DİLİ 2 -->
       <article class="pcard up">
         <div class="cmedia">
-          <div class="cmain"><img id="ad" src="AnaDili.png" alt="Ana Dili 2" onclick="openLb(this.src)"></div>
+          <div class="cmain"><img id="ad" src="img/anadili.jpg" alt="Ana Dili 2" onclick="openLb(this.src)"></div>
           <div class="cstrip">
             <button class="tnv" onclick="sv(this,'ad','zCeYFex3bv8')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
-            <img class="tn on" src="AnaDili.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_1.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_2.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_3.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_4.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_5.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_6.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_7.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_8.png" onclick="st(this,'ad')" alt=""><img class="tn" src="anadili_9.png" onclick="st(this,'ad')" alt="">
+            <img loading="lazy" class="tn on" src="img/t/anadili.jpg" data-full="img/anadili.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_1.jpg" data-full="img/anadili_1.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_2.jpg" data-full="img/anadili_2.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_3.jpg" data-full="img/anadili_3.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_4.jpg" data-full="img/anadili_4.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_5.jpg" data-full="img/anadili_5.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_6.jpg" data-full="img/anadili_6.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_7.jpg" data-full="img/anadili_7.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_8.jpg" data-full="img/anadili_8.jpg" onclick="st(this,'ad')" alt=""><img loading="lazy" class="tn" src="img/t/anadili_9.jpg" data-full="img/anadili_9.jpg" onclick="st(this,'ad')" alt="">
           </div>
         </div>
         <div class="cbody">
           <div class="ctop"><span class="mono" data-key="ad-g">Educational · Mobile · Internship</span><span class="cnum mono">05</span></div>
           <h3 class="cname">Ana Dili 2</h3>
-          <p class="cdesc" data-key="ad-d">Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, family vocabulary, animal education.</p>
+          <p class="cdesc" data-key="ad-d">Educational mobile game teaching the Azerbaijani language through mini-games, simulated phone calls and interactive videos — numbers, family vocabulary and animals.</p>
           <div class="chips"><span class="chip chip-pro" data-key="pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span></div>
           <div class="crow2"><span data-key="ad-r">Solo Developer</span><b data-key="ad-t">Internship</b></div>
         </div>
@@ -405,16 +417,16 @@ footer{border-top:1px solid var(--line)}
       <!-- PICKER 3D -->
       <article class="pcard up">
         <div class="cmedia">
-          <div class="cmain"><img id="pk" src="Picker.png" alt="Picker 3D" onclick="openLb(this.src)"></div>
+          <div class="cmain"><img id="pk" src="img/picker.jpg" alt="Picker 3D" onclick="openLb(this.src)"></div>
           <div class="cstrip">
             <button class="tnv" onclick="sv(this,'pk','O5bIFwww28c')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg><span data-key="vl">Video</span></button>
-            <img class="tn on" src="Picker.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_1.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_2.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_3.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_4.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_5.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_6.png" onclick="st(this,'pk')" alt=""><img class="tn" src="picker_7.png" onclick="st(this,'pk')" alt="">
+            <img loading="lazy" class="tn on" src="img/t/picker.jpg" data-full="img/picker.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_1.jpg" data-full="img/picker_1.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_2.jpg" data-full="img/picker_2.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_3.jpg" data-full="img/picker_3.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_4.jpg" data-full="img/picker_4.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_5.jpg" data-full="img/picker_5.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_6.jpg" data-full="img/picker_6.jpg" onclick="st(this,'pk')" alt=""><img loading="lazy" class="tn" src="img/t/picker_7.jpg" data-full="img/picker_7.jpg" onclick="st(this,'pk')" alt="">
           </div>
         </div>
         <div class="cbody">
           <div class="ctop"><span class="mono" data-key="pk-g">Casual · 3D · University</span><span class="cnum mono">06</span></div>
           <h3 class="cname">Picker 3D</h3>
-          <p class="cdesc" data-key="pk-d">Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems.</p>
+          <p class="cdesc" data-key="pk-d">Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems, including object pooling.</p>
           <div class="chips"><span class="chip">3D</span><span class="chip">Casual</span><span class="chip">Unity</span></div>
           <div class="crow2"><span data-key="pk-r">Solo Developer</span><b>PC / Mobile</b></div>
         </div>
@@ -429,18 +441,18 @@ footer{border-top:1px solid var(--line)}
     <div class="up">
       <span class="sec-kicker mono" data-key="ae">// about</span>
       <h2 class="a-heading"><span data-key="ah1">I make things work —</span><br><span class="acc" data-key="ah2">and feel right.</span></h2>
-      <p class="a-p about-p0">Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.</p>
+      <p class="a-p about-p0">Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC, now building in Unreal Engine 5 with C++. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.</p>
       <p class="a-p about-p1">Building DishDash solo meant owning every decision from prototype to Steam release. That pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
       <p class="a-p about-p2">I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.</p>
     </div>
     <div class="up">
       <div class="sg">
         <span class="sg-label mono" data-key="ske">Game Engines</span>
-        <div class="sk-row"><span class="sk hi">Unity</span><span class="sk">Unreal Engine</span><span class="sk">Godot</span></div>
+        <div class="sk-row"><span class="sk hi">Unity</span><span class="sk hi">Unreal Engine 5</span><span class="sk">Godot</span></div>
       </div>
       <div class="sg">
         <span class="sg-label mono" data-key="skl">Languages</span>
-        <div class="sk-row"><span class="sk hi">C#</span><span class="sk hi">Python</span><span class="sk">Java</span><span class="sk">C++</span></div>
+        <div class="sk-row"><span class="sk hi">C#</span><span class="sk hi">Python</span><span class="sk hi">C++</span><span class="sk">Java</span></div>
       </div>
       <div class="sg">
         <span class="sg-label mono" data-key="skt">Tools &amp; Platforms</span>
@@ -459,11 +471,12 @@ footer{border-top:1px solid var(--line)}
     <div class="c-btns">
       <a href="mailto:ahsennurilter@gmail.com" class="btn btn-fill">ahsennurilter@gmail.com</a>
       <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn btn-outline">LinkedIn <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+      <a href="Ahsen-Nur-Ilter-CV.pdf" target="_blank" class="btn btn-outline"><span data-key="cv">Resume (PDF)</span></a>
     </div>
     <div class="c-links mono">
       <a href="https://store.steampowered.com/app/5413500/" target="_blank">Build&amp;Boom ↗</a>
       <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank">DishDash ↗</a>
-      <a href="mailto:ahsennurilter@hotmail.com">ahsennurilter@hotmail.com</a>
+      <a href="https://github.com/asennur" target="_blank">GitHub ↗</a>
     </div>
   </div>
 </section>
@@ -485,7 +498,7 @@ function st(tn,id){
   tn.classList.add('on');
   const img=document.getElementById(id);
   const fr=img.parentElement.querySelector('iframe');if(fr)fr.remove();
-  img.style.display='block';img.src=tn.src;
+  img.style.display='block';img.src=tn.dataset.full||tn.src;
 }
 function sv(btn,id,vid){
   btn.closest('.cstrip').querySelectorAll('.tn,.tnv').forEach(t=>t.classList.remove('on'));
@@ -499,23 +512,23 @@ function sv(btn,id,vid){
 
 const T={
   en:{
-    'n0':'Work','n1':'About','n2':'Contact',
+    'n0':'Work','n1':'About','n2':'Contact','n3':'Resume','cv':'Resume (PDF)',
     'st1':'Currently building',
-    'hero-tag':'Game Developer — Unity · C#',
-    'hero-desc':'4+ years building games across mobile, VR, and PC. Currently developing Build&Boom, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.',
+    'hero-tag':'Game Developer — Unity · Unreal Engine · C# · C++',
+    'hero-desc':'4+ years building games across mobile, VR, and PC. Currently developing Build&Boom solo in Unreal Engine 5, a competitive party game coming to Steam. Previously shipped DishDash solo on Steam.',
     'hb1':'View My Work','hb2':'Get in Touch',
     's0':'Years experience','s1':'Projects','s2':'Steam titles','s3':'Platforms · PC, VR, iOS, Android',
     'we':'// selected work','wt':'Projects','wc':'6 projects','vl':'Video',
-    'tr':'Role','tp':'Platform','tl':'Release','pro':'Professional',
-    'bb-f':'Now in development','bb-g':'Party · Competitive · Multiplayer','bb-r':'Game Developer','bb-b':'Wishlist on Steam',
-    'bb-d':'Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, tomatoes and traps. Three modes from 1v1 to 3v3, online or local split-screen.',
+    'tr':'Role','te':'Engine','tp':'Platform','tl':'Release','pro':'Professional',
+    'bb-f':'Now in development','bb-g':'Party · Competitive · Multiplayer','bb-r':'Solo Developer','bb-b':'Wishlist on Steam',
+    'bb-d':'Chaotic competitive party game: one team races to raise a structure from the blueprint, the other does everything it can to bring it crashing down — with rocks, wind fans, drones, chickens and traps. Three modes from 1v1 to 3v3, online or local split-screen.',
     'dd-g':'Time Management · Simulation','dd-c':'Released on Steam','dd-d':'Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.','dd-b':'View on Steam','dd-pk':'Detailed Overview',
     'rr-g':'VR · Physics · Prototype','rr-d':'VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch.','rr-r':'Developer',
     'oe-g':'Children · Mobile · Freelance','oe-d':"Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently. Visuals provided by client.",'oe-r':'Solo Developer','oe-t':'Freelance',
-    'ad-g':'Educational · Mobile · Internship','ad-d':'Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, family vocabulary, animal education.','ad-r':'Solo Developer','ad-t':'Internship',
-    'pk-g':'Casual · 3D · University','pk-d':'Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems.','pk-r':'Solo Developer',
+    'ad-g':'Educational · Mobile · Internship','ad-d':'Educational mobile game teaching the Azerbaijani language through mini-games, simulated phone calls and interactive videos — numbers, family vocabulary and animals.','ad-r':'Solo Developer','ad-t':'Internship',
+    'pk-g':'Casual · 3D · University','pk-d':'Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems, including object pooling.','pk-r':'Solo Developer',
     'ae':'// about','ah1':'I make things work —','ah2':'and feel right.',
-    'about-p0':"Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.",
+    'about-p0':"Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC, now building in Unreal Engine 5 with C++. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.",
     'about-p1':'Building DishDash solo meant owning every decision from prototype to Steam release. That pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.',
     'about-p2':"I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.",
     'ske':'Game Engines','skl':'Languages','skt':'Tools & Platforms',
@@ -523,23 +536,23 @@ const T={
     'fn':'Game Developer',
   },
   tr:{
-    'n0':'Projeler','n1':'Hakkımda','n2':'İletişim',
+    'n0':'Projeler','n1':'Hakkımda','n2':'İletişim','n3':'CV','cv':'CV (PDF)',
     'st1':'Şu an geliştiriyorum:',
-    'hero-tag':'Oyun Geliştirici — Unity · C#',
-    'hero-desc':'4+ yıldır mobil, VR ve PC\'de oyun geliştiriyorum. Şu anda Steam\'e gelecek rekabetçi parti oyunu Build&Boom\'u geliştiriyorum. Daha önce DishDash\'i tek başıma Steam\'de yayınladım.',
+    'hero-tag':'Oyun Geliştirici — Unity · Unreal Engine · C# · C++',
+    'hero-desc':'4+ yıldır mobil, VR ve PC\'de oyun geliştiriyorum. Şu anda Unreal Engine 5 ile tek başıma Steam\'e gelecek rekabetçi parti oyunu Build&Boom\'u geliştiriyorum. Daha önce DishDash\'i tek başıma Steam\'de yayınladım.',
     'hb1':'Projeleri Gör','hb2':'İletişime Geç',
     's0':'Yıl deneyim','s1':'Proje','s2':'Steam oyunu','s3':'Platform · PC, VR, iOS, Android',
     'we':'// seçili projeler','wt':'Projeler','wc':'6 proje','vl':'Video',
-    'tr':'Rol','tp':'Platform','tl':'Çıkış','pro':'Profesyonel',
-    'bb-f':'Şu an geliştiriliyor','bb-g':'Parti · Rekabetçi · Çok Oyunculu','bb-r':'Oyun Geliştirici','bb-b':'Steam\'de İstek Listesine Ekle',
-    'bb-d':'Kaotik, rekabetçi bir parti oyunu: bir takım plana göre yapıyı yükseltmeye çalışırken diğeri taşlar, rüzgâr fanları, dronlar, domatesler ve tuzaklarla onu yıkmak için her şeyi yapar. 1v1\'den 3v3\'e üç mod, online ya da yerel bölünmüş ekran.',
+    'tr':'Rol','te':'Motor','tp':'Platform','tl':'Çıkış','pro':'Profesyonel',
+    'bb-f':'Şu an geliştiriliyor','bb-g':'Parti · Rekabetçi · Çok Oyunculu','bb-r':'Solo Geliştirici','bb-b':'Steam\'de İstek Listesine Ekle',
+    'bb-d':'Kaotik, rekabetçi bir parti oyunu: bir takım plana göre yapıyı yükseltmeye çalışırken diğeri taşlar, rüzgâr fanları, dronlar, tavuklar ve tuzaklarla onu yıkmak için her şeyi yapar. 1v1\'den 3v3\'e üç mod, online ya da yerel bölünmüş ekran.',
     'dd-g':'Zaman Yönetimi · Simülasyon','dd-c':'Steam\'de yayında','dd-d':'Gameplay, UI/UX, sanat, ses ve Steam yayınını tek başıma yönettiğim restoran simülasyonu — oyuncular yemek hazırlar, müşterilere servis yapar ve baskı altında kaosu yönetir.','dd-b':'Steam\'de Gör','dd-pk':'Ayrıntılı İncele',
     'rr-g':'VR · Fizik · Prototip','rr-d':'Bulaşık yıkama ve yemek pişirme üzerine VR mekanik prototipi. Fizik tabanlı el etkileşimleri sıfırdan geliştirildi.','rr-r':'Geliştirici',
     'oe-g':'Çocuk · Mobil · Freelance','oe-d':'Boyama ve puzzle mekanikli çocuk mobil oyunu. Tüm geliştirme sürecini bağımsız yürüttüm. Görseller müşteri tarafından sağlandı.','oe-r':'Solo Geliştirici','oe-t':'Freelance',
-    'ad-g':'Eğitim · Mobil · Staj','ad-d':'Azerbaycan dilini mini oyunlarla öğreten çocuk eğitim oyunu — simüle telefon görüşmeleri ve interaktif videolar aracılığıyla.','ad-r':'Solo Geliştirici','ad-t':'Staj',
-    'pk-g':'Casual · 3D · Üniversite','pk-d':'Üniversite projesi olarak solo geliştirilen casual 3D mobil oyun. Object pooling dahil tüm sistemleri sıfırdan kurdum.','pk-r':'Solo Geliştirici',
+    'ad-g':'Eğitim · Mobil · Staj','ad-d':'Azerbaycan dilini mini oyunlar, simüle telefon görüşmeleri ve interaktif videolarla öğreten çocuk eğitim oyunu — sayılar, aile kelimeleri ve hayvanlar.','ad-r':'Solo Geliştirici','ad-t':'Staj',
+    'pk-g':'Casual · 3D · Üniversite','pk-d':'Üniversite projesi olarak solo geliştirilen casual 3D mobil oyun. Tam bir oyunun sistemlerini ilk kez bağımsız tasarladım; object pooling dahil hepsini sıfırdan kurdum.','pk-r':'Solo Geliştirici',
     'ae':'// hakkımda','ah1':'İşleyen şeyler yaparım —','ah2':'ve doğru hissettiren.',
-    'about-p0':"Mobil, VR ve PC'de 4+ yıl Unity ve C# deneyimli oyun geliştiriciyim. Erken prototipten son yayına kadar tüm sürece odaklanıyorum; özellikle oyuncunun elinde iyi hissettiren mekaniklere önem veriyorum.",
+    'about-p0':"Mobil, VR ve PC'de 4+ yıl Unity ve C# deneyimli oyun geliştiriciyim; şu anda Unreal Engine 5 ve C++ ile çalışıyorum. Erken prototipten son yayına kadar tüm sürece odaklanıyorum; özellikle oyuncunun elinde iyi hissettiren mekaniklere önem veriyorum.",
     'about-p1':"DishDash'i tek başıma geliştirmek, prototipten Steam yayınına kadar her kararı üstlenmek demekti. Bu bana kapsamı netleştirmeyi, öncelik belirlemeyi ve gerçekten bir şey çıkarmayı öğretti.",
     'about-p2':'Ticari, freelance ve akademik projelerde çalıştım — her zaman uyum sağlayan, çözmeye değer bir sonraki problemi arayan biri olarak.',
     'ske':'Oyun Motorları','skl':'Programlama Dilleri','skt':'Araçlar ve Platformlar',
